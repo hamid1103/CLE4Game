@@ -2,7 +2,8 @@ import * as ex from 'excalibur'
 import {ResourceLoader} from "./resources.js";
 import {variants, labels} from '@catppuccin/palette'
 import {Physics} from "excalibur";
-import {TestLevel} from "./Levels/TestLevel.js"; //Using catppuccin colors found in this package. Check here for more info https://github.com/catppuccin/catppuccin
+import {TestLevel} from "./Levels/TestLevel.js";
+import {DevTool} from "@excaliburjs/dev-tools"; //Using catppuccin colors found in this package. Check here for more info https://github.com/catppuccin/catppuccin
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
@@ -31,3 +32,4 @@ export class Game extends ex.Engine {
 }
 
 const newGame = new Game();
+const devtool = new DevTool(newGame);

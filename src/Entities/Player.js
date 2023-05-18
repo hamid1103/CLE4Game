@@ -25,6 +25,7 @@ export class Player extends ex.Actor{
     }
     onPreUpdate(_engine, _delta) {
         this.graphics.use('Sprite')
+        this.acc = ex.vec(0, 10)
     }
 
 }

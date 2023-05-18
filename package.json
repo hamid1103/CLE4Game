@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@catppuccin/palette": "^0.1.8",
+    "@excaliburjs/dev-tools": "^0.27.1",
     "excalibur": "^0.27.0"
   }
 }
