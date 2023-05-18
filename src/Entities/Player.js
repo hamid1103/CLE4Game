@@ -18,10 +18,13 @@ export class Player extends ex.Actor{
     Target = ex.Sprite.from(Resources.TargetIcon)
 
     onInitialize(_engine) {
-        this.graphics.use(this.Target)
+        this.graphics.add('Sprite', this.Target)
         this.on('exitviewport', ()=>{
             this.pos = this.startpos;
         })
+    }
+    onPreUpdate(_engine, _delta) {
+        this.graphics.use('Sprite')
     }
 
 }

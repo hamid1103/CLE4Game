@@ -24,7 +24,7 @@ export class Game extends ex.Engine {
 
     startGame(){
         const testLevel = new TestLevel()
-        this.addScene('TL', TestLevel)
+        this.addScene('TL', testLevel)
         this.goToScene('TL')
     }
 
