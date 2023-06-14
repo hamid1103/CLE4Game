@@ -8,16 +8,17 @@ export class Player extends ex.Actor {
 
     /**
      *
-     * @param position ex.vec(x, y)
+     * @param x x Start coord
+     * @param y y Start coord
      */
-    constructor(position) {
+    constructor(x, y) {
         super({
             name: 'player',
-            pos: position,
+            pos: ex.vec(x, y),
             collisionType: ex.CollisionType.Active,
             collider: ex.Shape.Box(18, 27, ex.Vector.Half, ex.vec(0, 0))
         });
-        this.startpos = position
+        this.startpos = ex.vec(x, y)
     }
 
     Target = Sprite.from(Resources.TargetIcon)
@@ -44,6 +45,8 @@ export class Player extends ex.Actor {
     onPreUpdate(_engine, _delta) {
         this.graphics.use('Sprite')
 
+
+        this.vel.x =0
         if (_engine.input.keyboard.isHeld(ex.Input.Keys.Right)) {
             this.vel.x = 200
         }
@@ -71,7 +74,7 @@ export class Player extends ex.Actor {
             }
         } else {
             if (this.vel.y > 0 || this.vel.y < 0) {
-                
+
             }
         }
 
