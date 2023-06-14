@@ -29,7 +29,7 @@ export class Player extends ex.Actor {
             this.pos = this.startpos;
         })
         this.on('collisionstart', (e) => this.onFirstCollision)
-        this.on('postcollision', e => this.postCollision())
+        this.on('postcollision', (e) => this.postCollision)
     }
 
     onFirstCollision(e) {
