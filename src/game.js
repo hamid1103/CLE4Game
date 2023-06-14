@@ -23,7 +23,7 @@ export class Game extends ex.Engine {
             canvasElement: document.getElementById('GC'),
             backgroundColor: ex.Color.fromHex(variants.mocha.base.hex)
         });
-        // Physics.acc = ex.vec(0, 800) //Setting gravity
+        Physics.acc = ex.vec(0, 800) //Setting gravity
         this.start(loader).then(() => {
             this.startGame();
         })
@@ -37,8 +37,7 @@ export class Game extends ex.Engine {
         this.addScene('TL', testLevel)
         this.goToScene('TL')
 
-        let platform = new Platform(650, 300)
-        this.add(platform)
+
     }
 
     #joyStickFound(e) {
