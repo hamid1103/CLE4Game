@@ -3,6 +3,7 @@ import TargetIcon from './assets/finishedAssets/Target.png'
 import pixelplatform from './assets/pixelplatform.png'
 
 
+
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
     Pixelplatform: new ImageSource(pixelplatform),
