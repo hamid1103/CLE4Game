@@ -5,6 +5,8 @@ import {Physics} from "excalibur";
 import {TestLevel} from "./Levels/TestLevel.js";
 import { Arcade } from "arcade-game"
 import {DevTool} from "@excaliburjs/dev-tools"; //Using catppuccin colors found in this package. Check here for more info https://github.com/catppuccin/catppuccin
+import { Platform } from './Core/Platform.js';
+
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
@@ -21,7 +23,7 @@ export class Game extends ex.Engine {
             canvasElement: document.getElementById('GC'),
             backgroundColor: ex.Color.fromHex(variants.mocha.base.hex)
         });
-        Physics.acc = ex.vec(0, 800) //Setting gravity
+        // Physics.acc = ex.vec(0, 800) //Setting gravity
         this.start(loader).then(() => {
             this.startGame();
         })
@@ -34,6 +36,9 @@ export class Game extends ex.Engine {
         const testLevel = new TestLevel()
         this.addScene('TL', testLevel)
         this.goToScene('TL')
+
+        let platform = new Platform()
+        this.add(platform)
     }
 
     #joyStickFound(e) {

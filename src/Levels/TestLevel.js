@@ -7,8 +7,6 @@ export class TestLevel extends ex.Scene{
 
 
     StartLevel(){
-        const player = new Player(ex.vec( 100, 100))
-        this.add(player)
     }
 
 }
