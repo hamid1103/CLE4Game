@@ -7,19 +7,17 @@ import {Resources} from "../resources.js";
 export class Platform extends ex.Actor{
    
 
-    constructor(position) {
+    constructor(x, y) {
         super({
-           collisionType: CollisionType.Fixed
+           collisionType: CollisionType.Fixed,
+           pos: ex.vec(x, y)
         });
-        this.startpos = position
-        
+        this.startpos = ex.vec(x, y)
     }
     
     Target = ex.Sprite.from(Resources.TargetIcon)
 
     onInitialize(engine) {
-        this.pos = new Vector(650, 300);
-
         if (this.type === 0) {
             this.graphics.use(Resources.Pixelplatform.toSprite());
             this.on('collisionstart', (event) => this.hitSomething(event));

@@ -37,7 +37,7 @@ export class Game extends ex.Engine {
         this.addScene('TL', testLevel)
         this.goToScene('TL')
 
-        let platform = new Platform()
+        let platform = new Platform(650, 300)
         this.add(platform)
     }
 
