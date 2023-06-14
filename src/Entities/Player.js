@@ -1,9 +1,11 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
 import {Shape, Sprite} from "excalibur";
-export class Player extends ex.Actor{
+
+export class Player extends ex.Actor {
     onGround;
     startpos;
+
     /**
      *
      * @param position ex.vec(x, y)
@@ -22,19 +24,19 @@ export class Player extends ex.Actor{
 
     onInitialize(_engine) {
         this.graphics.add('Sprite', this.Target)
-        this.on('exitviewport', ()=>{
+        this.on('exitviewport', () => {
             this.pos = this.startpos;
         })
-        this.on('collisionstart', (e)=>this.onFirstCollision)
-        this.on('postcollision', e=>this.postCollision())
+        this.on('collisionstart', (e) => this.onFirstCollision)
+        this.on('postcollision', e => this.postCollision())
     }
 
-    onFirstCollision(e){
+    onFirstCollision(e) {
 
     }
 
-    postCollision(e){
-        if(e.other.side === ex.Side.Top){
+    postCollision(e) {
+        if (e.other.side === ex.Side.Top) {
             this.onGround = true
         }
     }
@@ -42,21 +44,35 @@ export class Player extends ex.Actor{
     onPreUpdate(_engine, _delta) {
         this.graphics.use('Sprite')
 
-        if(_engine.input.keyboard.isHeld(ex.Input.Keys.Right)){
+        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Right)) {
             this.vel.x = 200
         }
 
-        if(_engine.input.keyboard.isHeld(ex.Input.Keys.Left)){
+        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Left)) {
             this.vel.x = -200
         }
 
-        if(_engine.input.keyboard.isHeld(ex.Input.Keys.Left) && this.onGround) {
+        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Left) && this.onGround) {
             this.vel.y = -400;
             this.onGround = false;
         }
 
-        if(this.vel.y > 0 || this.vel.y < 0){
+        if (this.vel.y > 0 || this.vel.y < 0) {
             this.onGround = false
+        }
+
+        if (this.onGround) {
+            if (this.vel.x > 0) {
+
+            } else if (this.vel.x < 0) {
+
+            } else if (this.vel.x === 0) {
+
+            }
+        } else {
+            if (this.vel.y > 0 || this.vel.y < 0) {
+                
+            }
         }
 
     }
