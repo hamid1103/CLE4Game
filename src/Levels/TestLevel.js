@@ -7,6 +7,8 @@ export class TestLevel extends ex.Scene{
 
 
     StartLevel(){
+        let player = new Player()
+        this.add(player)
     }
 
 }
