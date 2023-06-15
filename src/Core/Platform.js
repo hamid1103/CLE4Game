@@ -4,6 +4,8 @@ import { Player } from '../Entities/Player.js';
 import {Resources, SpriteResources} from "../resources.js";
 
 
+
+
 export class Platform extends ex.Actor{
     PixelplatformSprite = ex.Sprite.from(Resources.Pixelplatform)
     constructor(x, y, type) {
@@ -30,6 +32,8 @@ export class Platform extends ex.Actor{
     }
 
     
+
+
     hitSomething(event){
         if (event.other instanceof Player) {
             console.log('hit enemy')
@@ -37,3 +41,11 @@ export class Platform extends ex.Actor{
     }
 
 }
+
+const platforms  = [];
+
+const platformPositions = [
+    { x: 100, y: 200, type: 0 },
+    { x: 300, y: 300, type: 1 },
+];
+

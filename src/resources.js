@@ -1,6 +1,6 @@
 import { ImageSource, Sound, Resource, Loader, Sprite } from "excalibur";
 import TargetIcon from './assets/finishedAssets/Target.png'
-import pixelplatform from './assets/pixelplatform.png'
+import pixelplatform from './assets/finishedAssets/platform.png'
 
 
 
