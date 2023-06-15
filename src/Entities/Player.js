@@ -55,7 +55,7 @@ export class Player extends ex.Actor {
             this.vel.x = -200
         }
 
-        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Left) && this.onGround) {
+        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Up) && this.onGround) {
             this.vel.y = -400;
             this.onGround = false;
         }

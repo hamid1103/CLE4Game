@@ -11,7 +11,7 @@ export class TestLevel extends ex.Scene{
         let player = new Player(650, 700)
         this.add(player)
 
-        let platform = new Platform(650, 800)
+        let platform = new Platform(650, 800, 0)
         this.add(platform)
 
     }

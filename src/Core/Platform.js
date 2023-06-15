@@ -8,7 +8,6 @@ export class Platform extends ex.Actor{
     PixelplatformSprite = ex.Sprite.from(Resources.Pixelplatform)
     constructor(x, y, type) {
         super({
-    
            collisionType: CollisionType.Fixed,
            pos: ex.vec(x, y)
         });
