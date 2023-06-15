@@ -5,7 +5,9 @@ import {Shape, Sprite} from "excalibur";
 export class Player extends ex.Actor {
     onGround;
     startpos;
-
+    StartHealth = 3;
+    CurHealth;
+    dead;
     /**
      *
      * @param x x Start coord
@@ -19,6 +21,7 @@ export class Player extends ex.Actor {
             collider: ex.Shape.Box(18, 27, ex.Vector.Half, ex.vec(0, 0))
         });
         this.startpos = ex.vec(x, y)
+        this.CurHealth = this.StartHealth
     }
 
     Target = Sprite.from(Resources.TargetIcon)
@@ -30,6 +33,14 @@ export class Player extends ex.Actor {
         })
         this.on('collisionstart', (e) => this.onFirstCollision)
         this.on('postcollision', (e) => this.postCollision)
+    }
+
+    RemoveHeart(){
+        if(this.CurHealth > 0) {
+            this.CurHealth--
+        }else {
+            this.dead = true;
+        }
     }
 
     onFirstCollision(e) {
