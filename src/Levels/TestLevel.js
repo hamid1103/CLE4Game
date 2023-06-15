@@ -18,7 +18,7 @@ export class TestLevel extends ex.Scene{
         let platform = new Platform(650, 800, 0)
         this.add(platform)
 
-        let Kwal = new Enemy(650, 700)
+        let Kwal = new Enemy(900, 700)
         this.add(Kwal)
         
         let background = new ScrollingBackground()

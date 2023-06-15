@@ -10,6 +10,45 @@ import {TestLevel} from '../Levels/TestLevel.js';
 
 
 
+// export class Enemy extends ex.Actor{
+ 
+
+   
+
+//     constructor(){
+//         super({
+//             collisionType: CollisionType.Active
+            
+
+//         });
+
+
+//     }
+
+
+//     onInitialize() {
+//         this.on('precollision', this.handleCollision);
+//        const Kwal = ex.Sprite.from(Resources.Enemy1)
+//        Kwal.scale.setTo(2, 2);
+
+
+//        const Duif = ex.Sprite.from(Resources.Enemy2)
+//        Duif.scale.setTo(1.5, 1.5);
+
+
+
+//       }
+
+
+    
+//     // handleCollision(event) {
+//     //     if (event.other instanceof Player) {
+//     //         event.other.RemoveHeart();
+//     //     }
+//     // }
+
+// }
+
 export class Enemy extends ex.Actor{
  
 
@@ -17,8 +56,10 @@ export class Enemy extends ex.Actor{
 
     constructor(){
         super({
-            collisionType: CollisionType.Active
-            
+            // collisionType: CollisionType.Active,
+            width: Resources.Enemy1.width, 
+            height: Resources.Enemy1.height
+
 
         });
 
@@ -27,13 +68,8 @@ export class Enemy extends ex.Actor{
 
 
     onInitialize() {
-        this.on('precollision', this.handleCollision);
-       const Kwal = ex.Sprite.from(Resources.Enemy1)
-       Kwal.scale.setTo(2, 2);
-
-
-       const Duif = ex.Sprite.from(Resources.Enemy2)
-       Duif.scale.setTo(1.5, 1.5);
+        this.graphics.use(Resources.Enemy1.toSprite())
+        this.scale = new Vector(15, 15);
 
 
 
