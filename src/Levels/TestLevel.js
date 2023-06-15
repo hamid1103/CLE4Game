@@ -2,6 +2,7 @@ import * as ex from 'excalibur'
 import {Player} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
+import {ScrollingBackground} from "../Core/Area.js";
 
 
 export class TestLevel extends ex.Scene{
@@ -20,6 +21,8 @@ export class TestLevel extends ex.Scene{
         let Kwal = new Enemy(650, 700)
         this.add(Kwal)
         
+        let background = new ScrollingBackground()
+        this.add(background)
 
 
 
@@ -32,6 +35,14 @@ export class TestLevel extends ex.Scene{
         type: Math.floor(Math.random() * 2), 
         };
         platforms.push(position);
+        }
+
+    
+        for(let platform in platforms)
+        {
+            let curplat = platforms[platform]
+            let newplatform = new Platform(curplat.x, curplat.y, curplat.type)
+            this.add(newplatform)
         }
 
         

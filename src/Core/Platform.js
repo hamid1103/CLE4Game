@@ -40,11 +40,6 @@ export class Platform extends ex.Actor{
             console.log('hit enemy')
         }
     }
-
-
-    multipleplatform(){
-        
-    }
 }
 
 
