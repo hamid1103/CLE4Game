@@ -34,18 +34,15 @@ export class TestLevel extends ex.Scene{
         for (let row = 0; row < numRows; row++) {
           const curRow = [];
           for (let col = 0; col < numCols; col++) {
-            const position = {
-              x: Math.floor(Math.random() * 500),
-              y: Math.floor(Math.random() * 500),
-              type: Math.floor(Math.random() * 2),
-            };
-            curRow.push(position);
+            curRow.push(Math.floor(Math.random() * 2));
+           
           }
           platforms.push(curRow);
-          let emptyrow = [0, 0, 0, 0,0,0,0,0,0,0]
-          platforms.push(emptyrow)
+          const emptyRow = Array(numCols).fill(0);
+          platforms.push(emptyRow);
+          console.log(curRow.join(' ') + ' ' + emptyRow.join(' '));
         }
-
+        
     
      for (let row of platforms) {
           for (let curplat of row) {
@@ -54,7 +51,7 @@ export class TestLevel extends ex.Scene{
           }
         }
 
-        
+    
 
     }
 
