@@ -8,6 +8,7 @@ import jetpack from './assets/finishedAssets/jetpack.png'
 import nuclear from './assets/finishedAssets/nuclear.png'
 import rocket from './assets/finishedAssets/rocket.png'
 import star from './assets/finishedAssets/star.png'
+import health from './assets/finishedAssets/health.png'
 
 
 const Resources = {
@@ -20,6 +21,7 @@ const Resources = {
     Nuclear: new ImageSource(nuclear),
     Rocket: new ImageSource(rocket),
     Star: new ImageSource(star),
+    Health: new ImageSource(health)
 }
 
 const SpriteResources = {
