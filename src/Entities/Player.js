@@ -2,18 +2,28 @@ import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
 import {Shape, Sprite} from "excalibur";
 
+export var PlayerName = {
+    Player1: 'Player1',
+    Player2: 'Player2'
+}
+
 export class Player extends ex.Actor {
     onGround;
     startpos;
     StartHealth = 3;
     CurHealth;
     dead;
+    playername;
+
+    curPlayerKeys;
+
     /**
      *
      * @param x x Start coord
      * @param y y Start coord
+     * @param playername of type PlayerName/ Determins what control scheme to use.
      */
-    constructor(x, y) {
+    constructor(x, y, playername = PlayerName.Player1) {
         super({
             name: 'player',
             pos: ex.vec(x, y),
@@ -22,27 +32,58 @@ export class Player extends ex.Actor {
         });
         this.startpos = ex.vec(x, y)
         this.CurHealth = this.StartHealth
+        this.playername = playername
+
+
+
     }
 
     Target = Sprite.from(Resources.TargetIcon)
 
     onInitialize(_engine) {
+
+
+
+        switch (this.playername){
+            case PlayerName.Player1:
+                this.curPlayerKeys = {
+                    Left:ex.Input.Keys.Left,
+                    Right:ex.Input.Keys.Right,
+                    Up:ex.Input.Keys.Up
+                }
+                document.addEventListener("joystick0button5", () => this.setUp());
+                document.addEventListener("joystick0left", () => this.setLeft());
+                document.addEventListener("joystick0right", () => this.setRight());
+                document.addEventListener("joystick0neutral", () => this.setNeutral());
+                break;
+            case PlayerName.Player2:
+                this.curPlayerKeys = {
+                    Left:ex.Input.Keys.A,
+                    Right:ex.Input.Keys.D,
+                    Up:ex.Input.Keys.W
+                }
+                document.addEventListener("joystick1button5", () => this.setUp());
+                document.addEventListener("joystick1left", () => this.setLeft());
+                document.addEventListener("joystick1right", () => this.setRight());
+                document.addEventListener("joystick1neutral", () => this.setNeutral());
+                break;
+
+        }
+
         this.graphics.add('Sprite', this.Target)
         this.on('exitviewport', () => {
             this.pos = this.startpos;
         })
-        this.on('collisionstart', (e) => this.onFirstCollision)
-        this.on('postcollision', (e) => this.postCollision)
-        document.addEventListener("joystick0button5", () => console.log('ButtonClicked'));
-        document.addEventListener("joystick0left", () => this.setLeft());
-        document.addEventListener("joystick0right", () => this.setRight());
-        document.addEventListener("joystick0neutral", ()=> this.setNeutral());
+        this.on('collisionstart', (e) => this.onFirstCollision(e))
+        this.on('postcollision', (e) => this.postCollision(e))
+        this.on('ExitCollision', (e) =>{this.exitCollision(e)
+        })
     }
 
-    RemoveHeart(){
-        if(this.CurHealth > 0) {
+    RemoveHeart() {
+        if (this.CurHealth > 0) {
             this.CurHealth--
-        }else {
+        } else {
             this.dead = true;
         }
     }
@@ -51,46 +92,54 @@ export class Player extends ex.Actor {
 
     }
 
+    exitCollision(e){
+    }
     postCollision(e) {
-        if (e.other.side === ex.Side.Top) {
+        if (e.side === ex.Side.Bottom) {
             this.onGround = true
+            console.log( this.playername + ' detect bottom col')
         }
     }
 
     goLeft = false
     goRight = false;
-    setLeft(){
+    goUp = false
+
+    setLeft() {
         this.goLeft = true
     }
-    setRight(){
+    setRight() {
         this.goRight = true
     }
-
-    setNeutral(){
+    setNeutral() {
         this.goLeft = false;
         this.goRight = false;
+    }
+    setUp(){
+        if(this.onGround)
+            this.goUp = true
     }
 
     onPreUpdate(_engine, _delta) {
         this.graphics.use('Sprite')
 
-
-        this.vel.x =0
-        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Right) || this.goRight) {
+        this.vel.x = 0
+        if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
         }
 
-        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Left) || this.goLeft) {
+        if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Left) || this.goLeft) {
             this.vel.x = -200
         }
 
-        if (_engine.input.keyboard.isHeld(ex.Input.Keys.Up) && this.onGround) {
+        if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
+            console.log(this.playername + ' jumps')
             this.vel.y = -400;
             this.onGround = false;
-        }
-
-        if (this.vel.y > 0 || this.vel.y < 0) {
-            this.onGround = false
+            if(this.goUp){
+                this.goUp = false
+                console.log('Controller jump')
+            }
         }
 
         if (this.onGround) {
