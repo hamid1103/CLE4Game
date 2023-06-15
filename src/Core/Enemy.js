@@ -69,7 +69,8 @@ export class Enemy extends ex.Actor{
 
     onInitialize() {
         this.graphics.use(Resources.Enemy1.toSprite())
-        this.scale = new Vector(15, 15);
+        this.scale = new Vector(10, 10);
+        this.pos = new Vector(500,500);
 
 
 
