@@ -2,6 +2,7 @@ import * as ex from 'excalibur'
 import { CollisionType, Sprite, Vector} from 'excalibur';
 import { Player } from '../Entities/Player.js';
 import {Resources, SpriteResources} from "../resources.js";
+import {TestLevel} from "../Levels/TestLevel.js";
 
 
 
@@ -40,12 +41,10 @@ export class Platform extends ex.Actor{
         }
     }
 
+
+    multipleplatform(){
+        
+    }
 }
 
-const platforms  = [];
-
-const platformPositions = [
-    { x: 100, y: 200, type: 0 },
-    { x: 300, y: 300, type: 1 },
-];
 
