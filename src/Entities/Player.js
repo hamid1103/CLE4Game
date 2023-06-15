@@ -97,7 +97,6 @@ export class Player extends ex.Actor {
     postCollision(e) {
         if (e.side === ex.Side.Bottom) {
             this.onGround = true
-            console.log( this.playername + ' detect bottom col')
         }
     }
 
@@ -133,12 +132,10 @@ export class Player extends ex.Actor {
         }
 
         if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
-            console.log(this.playername + ' jumps')
             this.vel.y = -400;
             this.onGround = false;
             if(this.goUp){
                 this.goUp = false
-                console.log('Controller jump')
             }
         }
 
