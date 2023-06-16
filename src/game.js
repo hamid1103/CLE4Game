@@ -6,10 +6,12 @@ import {TestLevel} from "./Levels/TestLevel.js";
 import { Arcade } from "arcade-game"
 import {DevTool} from "@excaliburjs/dev-tools"; //Using catppuccin colors found in this package. Check here for more info https://github.com/catppuccin/catppuccin
 import { Platform } from './Core/Platform.js';
+import {Player, PlayerName} from "./Entities/Player.js";
 
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
+    state
     #arcade;
     #joystickListener;
     constructor() {
@@ -20,7 +22,7 @@ export class Game extends ex.Engine {
             fixedUpdateFps: 60,
             //suppressPlayButton: true,
             pointerScope: ex.Input.PointerScope.Canvas,
-            canvasElement: document.getElementById('GC'),
+            canvasElement: document.getElementById('GC1'),
             backgroundColor: ex.Color.fromHex(variants.mocha.base.hex)
         });
         Physics.acc = ex.vec(0, 800) //Setting gravity
@@ -60,4 +62,4 @@ export class Game extends ex.Engine {
 }
 
 const newGame = new Game();
-const devtool = new DevTool(newGame);
+//const devtool = new DevTool(newGame);
