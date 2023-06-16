@@ -37,9 +37,6 @@ export class TestLevel extends ex.Scene{
         [1,1,0,1,1,0,1,1,0,0],
         [1,0,0,0,1,1,0,1,0,1]]
 
-        let random = Math.random() * prefabs.length;
-        prefabs[random];
-
         const numRows = 10;
         const numCols = 10;
 
@@ -47,26 +44,20 @@ export class TestLevel extends ex.Scene{
         
         for (let row = 0; row < numRows; row++) {
           const curRow = [];
-          for (let col = 0; col < numCols; col++) {
-            curRow.push(Math.floor(Math.random() * 2));
-           
-          }
-          platforms.push(curRow);
+        let random = Math.floor(Math.random() * prefabs.length);
+          platforms.push(prefabs[random]);
           const emptyRow = Array(numCols).fill(0);
           platforms.push(emptyRow);
-          console.log(curRow.join(' ') + ' ' + emptyRow.join(' '));
+          console.log(random);
+        }
+
+
+        for(let i = 0; i < platforms.length; i++){
+            let j = 900;
+            let pos = j - (i*45)
+
         }
         
-    
-     for (let row of platforms) {
-          for (let curplat of row) {
-            let newplatform = new Platform(curplat.x, curplat.y, curplat.type);
-            this.add(newplatform);
-          }
-        }
-
-  
-
     }
 
 }

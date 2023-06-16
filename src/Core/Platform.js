@@ -25,7 +25,7 @@ export class Platform extends ex.Actor{
         } else {
             this.graphics.use(this.PixelplatformSprite)
             this.on('collisionstart', (event) => this.hitSomething(event))
-            this.scale = new Vector(1, 1);
+            this.scale = new Vector(3.2, 1.8);
         }
         
         this.collider.useBoxCollider(this.PixelplatformSprite.width,this.PixelplatformSprite.height);

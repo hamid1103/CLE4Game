@@ -21,7 +21,7 @@ export class Enemy extends ex.Actor{
 
     onInitialize(engine) {
         this.graphics.use(Resources.Enemy1.toSprite())
-        this.scale = new Vector(10, 10);
+        this.scale = new Vector(6, 6);
         this.pos = new Vector(600,650);
     }
 
