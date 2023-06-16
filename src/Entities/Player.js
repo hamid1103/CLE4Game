@@ -33,7 +33,7 @@ export class Player extends ex.Actor {
      */
     constructor(x, y, playername = PlayerName.Player1, Engine) {
         super({
-            name: 'player',
+            name: playername,
             pos: ex.vec(x, y),
             collisionType: ex.CollisionType.Active,
             collisionGroup: Engine.Playergroup

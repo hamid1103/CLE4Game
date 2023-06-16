@@ -17,6 +17,7 @@ export class Enemy extends ex.Actor{
             collisionGroup: Engine.Enemygroup
         });
         console.log(Engine.Enemygroup)
+        this.body.group = Engine.Enemygroup
     }
 
 

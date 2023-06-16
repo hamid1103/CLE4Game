@@ -7,6 +7,7 @@ import {TestLevel} from "../Levels/TestLevel.js";
 
 export class Platform extends ex.Actor {
     PixelplatformSprite = ex.Sprite.from(Resources.Pixelplatform)
+    PlayersOnIt = {};
 
     constructor(x, y, type, Engine) {
         super({
@@ -14,39 +15,44 @@ export class Platform extends ex.Actor {
             pos: ex.vec(x, y),
             collisionGroup: Engine.Platformgroup
         });
+        this.body.group = Engine.Platformgroup;
         this.startpos = ex.vec(x, y)
     }
 
     onInitialize(engine) {
         if (this.type === 0) {
             this.graphics.use(this.PixelplatformSprite)
-            this.on('collisionstart', (event) => this.hitSomething(event));
-            this.on('postcollision', (e) => {
-                if (e.other instanceof Player) {
-                    this.PlayersOnIt = true
+            this.on('collisionstart', (event) => {
+                this.hitSomething(event)
+                if(event.other instanceof Player){
+                    this.PlayersOnIt[event.other.name] = event.other
                 }
-            })
+            });
             this.on('collisionend', (e) => {
                 if (e.other instanceof Player) {
-                    if (!this.PlayersOnIt)
+                    delete this.PlayersOnIt[e.other.name]
+                    if(Object.keys(this.PlayersOnIt).length === 0){
                         this.body.collisionType = ex.CollisionType.Passive
+                    }
                     console.log('player ' + e.other.name + ' left')
                 }
             })
             this.scale = new Vector(0.2, 0.2);
         } else {
             this.graphics.use(this.PixelplatformSprite)
-            this.on('collisionstart', (event) => this.hitSomething(event))
-            this.on('postcollision', (e) => {
-                if (e.other instanceof Player) {
-                    this.PlayersOnIt = true
+            this.on('collisionstart', (event) => {
+                this.hitSomething(event)
+                if(event.other instanceof Player){
+                    this.PlayersOnIt[event.other.name] = event.other
                 }
-            })
+            });
             this.on('collisionend', (e) => {
                 if (e.other instanceof Player) {
-                    if (!this.PlayersOnIt)
+                    delete this.PlayersOnIt[e.other.name]
+                    if(Object.keys(this.PlayersOnIt).length === 0){
                         this.body.collisionType = ex.CollisionType.Passive
-                    console.log('player left')
+                    }
+                    console.log('player ' + e.other.name + ' left')
                 }
             })
             this.scale = new Vector(1.5, 1.8);
