@@ -11,6 +11,7 @@ export class Player extends ex.Actor {
     onGround;
     startpos;
     StartHealth = 3;
+    points = 0;
     CurHealth;
     dead;
     playername;
@@ -37,7 +38,6 @@ export class Player extends ex.Actor {
         this.scale = ex.vec(2, 2)
         this.PlayerTexture = Sprite.from(Resources.TargetIcon)
         this.collider.useBoxCollider(this.PlayerTexture.width, this.PlayerTexture.height)
-
     }
 
 
@@ -79,6 +79,7 @@ export class Player extends ex.Actor {
         this.on('postcollision', (e) => this.postCollision(e))
         this.on('ExitCollision', (e) =>{this.exitCollision(e)
         })
+        this.addTag('Player')
     }
 
     RemoveHeart() {

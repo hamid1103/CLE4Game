@@ -3,6 +3,7 @@ import {Player} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
 import {Background} from "../Core/Area.js";
+import {Coin} from "../Items/Coin.js";
 
 
 export class TestLevel extends ex.Scene{
@@ -17,6 +18,11 @@ export class TestLevel extends ex.Scene{
 
         let player = new Player(650, 700)
         this.add(player)
+
+        let TestCoin = new Coin(750, 750)
+        this.add(TestCoin)
+        let TestCoin2 = new Coin(750, 850)
+        this.add(TestCoin2)
 
         let platform = new Platform(650, 800, 0)
         this.add(platform)
