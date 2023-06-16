@@ -48,7 +48,7 @@ export class Game extends ex.Engine {
     }
 
     startGame(){
-        this.#arcade = new Arcade(this, true, true)
+        this.#arcade = new Arcade(this, true, false)
         this.#joystickListener = (e) => this.#joyStickFound(e)
         document.addEventListener("joystickcreated",  this.#joystickListener)
 

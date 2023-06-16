@@ -16,7 +16,6 @@ export class CameraFollow extends ex.Actor{
     }
 
     onPreUpdate(_engine, _delta) {
-        console.log(this.player.pos.y + ' ' + this.lastpos)
         if(this.player.vel.y < 0){
             if(this.player.pos.y < this.lastpos){
                 this.pos.y -= this.pos.y - this.player.pos.y
