@@ -8,8 +8,12 @@ import {Coin} from "../Items/Coin.js";
 import {Jetpack} from "../Items/Jetpack.js";
 
 
+
 export class TestLevel extends ex.Scene {
     CamSet = false;
+    PCam1;
+    PCam2;
+    curCam;
     onInitialize(_engine) {
         this.StartLevel()
     }
@@ -21,9 +25,12 @@ export class TestLevel extends ex.Scene {
 
         this.player = new Player(650, 700, PlayerName.Player1, this.engine)
         this.add(this.player)
+        this.PCam1 = this.player.camFollowObj
+        this.curCam = this.PCam1
 
         this.player2 = new Player(650, 700, PlayerName.Player2, this.engine)
         this.add(this.player2)
+        this.PCam2 = this.player2.camFollowObj
 
         let TestJetPack = new Jetpack(750, 750, this.engine)
         this.add(TestJetPack)
@@ -79,9 +86,23 @@ export class TestLevel extends ex.Scene {
 
     onPreUpdate(_engine, _delta) {
         if(!this.CamSet){
-            this.camera.strategy.elasticToActor(this.player.camFollowObj, 0.9, 0.9)
+            this.camera.clearAllStrategies()
+            this.camera.strategy.elasticToActor(this.curCam, 0.9, 0.9)
             this.CamSet = true
         }
+
+        if(this.PCam1.pos.y < this.PCam2.pos.y){
+            if(this.curCam !== this.PCam1){
+                this.curCam = this.PCam1
+                this.CamSet = false
+            }
+        }else {
+            if(this.curCam !== this.PCam2){
+                this.curCam = this.PCam2
+                this.CamSet = false
+            }
+        }
+
     }
 
 }
