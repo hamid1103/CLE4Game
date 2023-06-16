@@ -21,16 +21,34 @@ export class Platform extends ex.Actor {
         if (this.type === 0) {
             this.graphics.use(this.PixelplatformSprite)
             this.on('collisionstart', (event) => this.hitSomething(event));
-            this.on('collisionend', e=> {
-                if(e.other.hasTag('Player')){
-                    this.body.collisionType = ex.CollisionType.Passive
-                    
+            this.on('postcollision', (e) => {
+                if (e.other instanceof Player) {
+                    this.PlayersOnIt = true
+                }
+            })
+            this.on('collisionend', (e) => {
+                if (e.other instanceof Player) {
+                    if (!this.PlayersOnIt)
+                        this.body.collisionType = ex.CollisionType.Passive
+                    console.log('player ' + e.other.name + ' left')
                 }
             })
             this.scale = new Vector(0.2, 0.2);
         } else {
             this.graphics.use(this.PixelplatformSprite)
             this.on('collisionstart', (event) => this.hitSomething(event))
+            this.on('postcollision', (e) => {
+                if (e.other instanceof Player) {
+                    this.PlayersOnIt = true
+                }
+            })
+            this.on('collisionend', (e) => {
+                if (e.other instanceof Player) {
+                    if (!this.PlayersOnIt)
+                        this.body.collisionType = ex.CollisionType.Passive
+                    console.log('player left')
+                }
+            })
             this.scale = new Vector(1.5, 1.8);
         }
 
@@ -40,7 +58,7 @@ export class Platform extends ex.Actor {
 
     hitSomething(event) {
         if (event.other instanceof Player) {
-            if(event.other.pos.y < this.pos.y){
+            if (event.other.pos.y < this.pos.y) {
                 this.body.collisionType = ex.CollisionType.Fixed;
             }
         }
