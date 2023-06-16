@@ -18,6 +18,7 @@ export class Enemy extends ex.Actor{
         });
         console.log(Engine.Enemygroup)
         this.body.group = Engine.Enemygroup
+        this.body.useGravity = false
     }
 
 
@@ -26,6 +27,14 @@ export class Enemy extends ex.Actor{
         this.graphics.use(Resources.Enemy1.toSprite())
         this.scale = new Vector(6, 6);
         this.pos = new Vector(600,650);
+
+        this.path = [ex.vec(this.pos.x, this.pos.y), ex.vec(this.pos.x, this.pos.y - 250), ex.vec(this.pos.x + 250, this.pos.y)]
+
+        let pathActions = new ex.ActionContext(this);
+        for (let i = this.path.length - 2; i >= 0; i--) {
+            pathActions.moveTo(this.path[i].x, this.path[i].y, 300);
+        }
+
     }
 
 
