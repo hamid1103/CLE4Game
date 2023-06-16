@@ -24,11 +24,26 @@ export class TestLevel extends ex.Scene{
         let Kwal = new Enemy(900, 700)
         this.add(Kwal)
         
-        
+       
+
+
+
         const platforms = [];
+        const prefabs =   
+        [[1,0,1,1,0,1,0,0,1,0],
+        [0,1,0,0,1,0,1,1,0,1],
+        [1,0,0,1,1,0,0,1,1,0],
+        [0,0,1,0,1,1,0,1,0,1],
+        [1,1,0,1,1,0,1,1,0,0],
+        [1,0,0,0,1,1,0,1,0,1]]
+
+        let random = Math.random() * prefabs.length;
+        prefabs[random];
 
         const numRows = 10;
         const numCols = 10;
+
+        
         
         for (let row = 0; row < numRows; row++) {
           const curRow = [];
@@ -50,6 +65,7 @@ export class TestLevel extends ex.Scene{
           }
         }
 
+  
 
     }
 
