@@ -9,7 +9,7 @@ import nuclear from './assets/finishedAssets/nuclear.png'
 import rocket from './assets/finishedAssets/rocket.png'
 import star from './assets/finishedAssets/star.png'
 import health from './assets/finishedAssets/health.png'
-
+import projectile from './assets/finishedAssets/projectile.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
@@ -21,7 +21,8 @@ const Resources = {
     Nuclear: new ImageSource(nuclear),
     Rocket: new ImageSource(rocket),
     Star: new ImageSource(star),
-    Health: new ImageSource(health)
+    Health: new ImageSource(health),
+    Projectile: new ImageSource(projectile)
 }
 
 const SpriteResources = {
