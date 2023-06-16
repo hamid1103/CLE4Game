@@ -3,7 +3,6 @@ import {Player} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
 import {Background} from "../Core/Area.js";
-import {Coin} from "../Items/Coin.js";
 
 
 export class TestLevel extends ex.Scene{
@@ -18,11 +17,6 @@ export class TestLevel extends ex.Scene{
 
         let player = new Player(650, 700)
         this.add(player)
-
-        let TestCoin = new Coin(750, 750)
-        this.add(TestCoin)
-        let TestCoin2 = new Coin(750, 850)
-        this.add(TestCoin2)
 
         let platform = new Platform(650, 800, 0)
         this.add(platform)
@@ -43,8 +37,8 @@ export class TestLevel extends ex.Scene{
         [1,1,0,1,1,0,1,1,0,0],
         [1,0,0,0,1,1,0,1,0,1]]
 
-        const numRows = 10;
-        const numCols = 10;
+        const numRows = 3;
+        const numCols = 3;
 
         
         
@@ -54,14 +48,29 @@ export class TestLevel extends ex.Scene{
           platforms.push(prefabs[random]);
           const emptyRow = Array(numCols).fill(0);
           platforms.push(emptyRow);
-          console.log(random);
+        
         }
+        console.log(platforms)
 
-
+        // 1440 breedte
         for(let i = 0; i < platforms.length; i++){
-            let j = 900;
-            let pos = j - (i*45)
-
+            let j = 855;
+            let posy = j - (i*45)
+            let curRow = platforms[i]
+            for(let k= 0; k < curRow.length; i++){
+                let b = 1440
+                let posx = (b / (k*curRow.length))
+                if(curRow[k] != 0){
+                    try{
+                    let newplatform = new Platform(posx, posy, 0)
+                    this.add(newplatform)
+                    }catch(er){
+                        console.log(er)
+                    }
+                }
+            }
+               
+            
         }
         
     }
