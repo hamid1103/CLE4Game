@@ -37,7 +37,7 @@ export class Platform extends ex.Actor{
 
     hitSomething(event){
         if (event.other instanceof Player) {
-        
+        console.log('player raakt de platform')
         }
     }
 }
