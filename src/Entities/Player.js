@@ -43,7 +43,7 @@ export class Player extends ex.Actor {
         this.scale = ex.vec(2.5, 2.5)
         this.PlayerTexture = Sprite.from(Resources.TargetIcon)
         this.collider.useBoxCollider(this.PlayerTexture.width, this.PlayerTexture.height)
-        this.camFollowObj = new CameraFollow();
+        this.camFollowObj = new CameraFollow(this);
     }
 
 
