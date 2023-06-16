@@ -20,14 +20,17 @@ export class Enemy extends ex.Actor{
 
 
     onInitialize(engine) {
+        this.on('collisionstart', (event) => this.hitSomething(event))
         this.graphics.use(Resources.Enemy1.toSprite())
         this.scale = new Vector(6, 6);
         this.pos = new Vector(600,650);
     }
 
-    onPostCollision(event) {
+
+    
+    hitSomething(event){
         if (event.other instanceof Player) {
-            console.log('Player raakt de enemy');
+            console.log('hit player')
         }
     }
 
