@@ -2,7 +2,7 @@ import * as ex from 'excalibur'
 import {Player} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
-import {ScrollingBackground} from "../Core/Area.js";
+import {Background} from "../Core/Area.js";
 
 
 export class TestLevel extends ex.Scene{
@@ -12,6 +12,9 @@ export class TestLevel extends ex.Scene{
 
 
     StartLevel(){
+        let background = new Background()
+        this.add(background)
+
         let player = new Player(650, 700)
         this.add(player)
 
@@ -21,11 +24,7 @@ export class TestLevel extends ex.Scene{
         let Kwal = new Enemy(900, 700)
         this.add(Kwal)
         
-        let background = new ScrollingBackground()
-        this.add(background)
-
-
-
+        
         const platforms = [];
 
         const numRows = 10;
