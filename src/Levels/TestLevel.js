@@ -3,6 +3,11 @@ import {Player} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
 import {Background} from "../Core/Area.js";
+<<<<<<< Updated upstream
+=======
+import {Coin} from "../Items/Coin.js";
+import {Jetpack} from "../Items/Jetpack.js";
+>>>>>>> Stashed changes
 
 
 export class TestLevel extends ex.Scene{
@@ -18,6 +23,15 @@ export class TestLevel extends ex.Scene{
         let player = new Player(650, 700)
         this.add(player)
 
+<<<<<<< Updated upstream
+=======
+        let TestJetPack = new Jetpack(750, 750)
+        this.add(TestJetPack)
+
+        let TestCoin2 = new Coin(750, 850)
+        this.add(TestCoin2)
+
+>>>>>>> Stashed changes
         let platform = new Platform(650, 800, 0)
         this.add(platform)
 

@@ -1,8 +1,8 @@
 import * as ex from 'excalibur'
-import { CollisionType, Sprite, Vector} from 'excalibur';
+import {CollisionType, Sprite, Vector} from 'excalibur';
 import {Resources, SpriteResources} from "../resources.js";
 
-export class Item extends ex.Actor{
+export class Item extends ex.Actor {
     ItemTexture;
     ItemSprite;
 
@@ -12,7 +12,7 @@ export class Item extends ex.Actor{
      * @param y Spawn Y
      * @param texture Resources.TextureName
      */
-    constructor(x, y, texture){
+    constructor(x, y, texture) {
         super({
             pos: ex.vec(x, y),
             collisionType: CollisionType.Passive
@@ -23,9 +23,9 @@ export class Item extends ex.Actor{
     }
 
     onInitialize(_engine) {
-        this.on('collisionstart', (e)=>{
+        this.on('collisionstart', (e) => {
             console.log('Collision')
-            if(e.other.hasTag('Player')){
+            if (e.other.hasTag('Player')) {
                 console.log('Collided with player')
                 this.Action(e.other);
                 this.kill()
@@ -35,7 +35,7 @@ export class Item extends ex.Actor{
         this.graphics.use('ItemSprite')
     }
 
-    Action(player){
+    Action(player) {
 
     }
 

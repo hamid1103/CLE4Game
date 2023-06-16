@@ -1,6 +1,7 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
 import {Shape, Sprite} from "excalibur";
+import {CameraFollow} from "./CameraFollow.js";
 
 export var PlayerName = {
     Player1: 'Player1',
@@ -15,6 +16,10 @@ export class Player extends ex.Actor {
     CurHealth;
     dead;
     playername;
+
+    camFollowObj;
+
+    JetPacking = false
 
     curPlayerKeys;
 
@@ -35,15 +40,16 @@ export class Player extends ex.Actor {
         this.startpos = ex.vec(x, y)
         this.CurHealth = this.StartHealth
         this.playername = playername
-        this.scale = ex.vec(2, 2)
+        this.scale = ex.vec(2.5, 2.5)
         this.PlayerTexture = Sprite.from(Resources.TargetIcon)
         this.collider.useBoxCollider(this.PlayerTexture.width, this.PlayerTexture.height)
+        this.camFollowObj = new CameraFollow();
     }
 
 
     onInitialize(_engine) {
 
-
+        this.addChild(this.camFollowObj)
 
         switch (this.playername){
             case PlayerName.Player1:
@@ -80,6 +86,8 @@ export class Player extends ex.Actor {
         this.on('ExitCollision', (e) =>{this.exitCollision(e)
         })
         this.addTag('Player')
+        this.graphics.use('Sprite')
+
     }
 
     RemoveHeart() {
@@ -92,6 +100,9 @@ export class Player extends ex.Actor {
 
     onFirstCollision(e) {
 
+    }
+    setJetPacking(ToF = true){
+        this.JetPacking = ToF
     }
 
     exitCollision(e){
@@ -122,7 +133,6 @@ export class Player extends ex.Actor {
     }
 
     onPreUpdate(_engine, _delta) {
-        this.graphics.use('Sprite')
         this.vel.x = 0
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
@@ -130,6 +140,10 @@ export class Player extends ex.Actor {
 
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Left) || this.goLeft) {
             this.vel.x = -200
+        }
+        if(this.JetPacking){
+            this.vel.y =- 400
+            return
         }
 
         if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
