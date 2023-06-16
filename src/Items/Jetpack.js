@@ -4,8 +4,8 @@ import {Resources} from "../resources.js";
 import {Actor} from "excalibur";
 import {ShowJetPack} from "../Entities/ShowJetPack.js";
 export class Jetpack extends Item{
-    constructor(x, y) {
-        super(x, y, Resources.Jetpack);
+    constructor(x, y, Engine) {
+        super(x, y, Resources.Jetpack, Engine);
     }
 
     Action(player) {

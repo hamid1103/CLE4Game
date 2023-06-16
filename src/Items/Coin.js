@@ -3,8 +3,8 @@ import {Item} from "../Core/Item.js";
 import {Resources} from "../resources.js";
 
 export class Coin extends Item{
-    constructor(x, y) {
-        super(x, y, Resources.Coin);
+    constructor(x, y, Engine) {
+        super(x, y, Resources.Coin, Engine);
         this.scale = ex.vec(1.7,1.7)
     }
 

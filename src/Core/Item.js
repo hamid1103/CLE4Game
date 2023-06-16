@@ -12,10 +12,11 @@ export class Item extends ex.Actor {
      * @param y Spawn Y
      * @param texture Resources.TextureName
      */
-    constructor(x, y, texture) {
+    constructor(x, y, texture, Engine) {
         super({
             pos: ex.vec(x, y),
-            collisionType: CollisionType.Passive
+            collisionType: CollisionType.Passive,
+            collisionGroup: Engine.ItemGroup
         });
         this.ItemTexture = texture
         this.ItemSprite = ex.Sprite.from(this.ItemTexture)

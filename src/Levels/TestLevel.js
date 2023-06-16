@@ -1,5 +1,5 @@
 import * as ex from 'excalibur'
-import {Player} from "../Entities/Player.js";
+import {Player, PlayerName} from "../Entities/Player.js";
 import {Platform} from "../Core/Platform.js";
 import {Enemy} from "../Core/Enemy.js";
 import {Background} from "../Core/Area.js";
@@ -9,6 +9,7 @@ import {Jetpack} from "../Items/Jetpack.js";
 
 
 export class TestLevel extends ex.Scene {
+    CamSet = false;
     onInitialize(_engine) {
         this.StartLevel()
     }
@@ -18,19 +19,22 @@ export class TestLevel extends ex.Scene {
         let background = new Background()
         this.add(background)
 
-        let player = new Player(650, 700)
-        this.add(player)
+        this.player = new Player(650, 700, PlayerName.Player1, this.engine)
+        this.add(this.player)
 
-        let TestJetPack = new Jetpack(750, 750)
+        this.player2 = new Player(650, 700, PlayerName.Player2, this.engine)
+        this.add(this.player2)
+
+        let TestJetPack = new Jetpack(750, 750, this.engine)
         this.add(TestJetPack)
 
-        let TestCoin2 = new Coin(750, 850)
+        let TestCoin2 = new Coin(750, 850, this.engine)
         this.add(TestCoin2)
 
-        let platform = new Platform(650, 800, 0)
+        let platform = new Platform(650, 800, 0, this.engine)
         this.add(platform)
 
-        let Kwal = new Enemy(900, 700)
+        let Kwal = new Enemy(900, 700, this.engine)
         this.add(Kwal)
 
 
@@ -43,7 +47,7 @@ export class TestLevel extends ex.Scene {
                 [1, 1, 0, 1, 1, 0, 1, 1, 0, 0],
                 [1, 0, 0, 0, 1, 1, 0, 1, 0, 1]]
 
-        const numRows = 10;
+        const numRows = 150;
         const numCols = 10;
 
 
@@ -63,15 +67,21 @@ export class TestLevel extends ex.Scene {
                 let b = 1440
                 let posx = (b/curRow.length) + 150*k
                 if(curRow[k] != 0){
-                    let newplatform = new Platform(posx, posy, 0)
+                    let newplatform = new Platform(posx, posy, 0, this.engine)
                     this.add(newplatform)
-                    if(k === 0){
-                        newplatform.color=ex.Color.Red
-                    }
+
+
                 }
             }
         }
 
+    }
+
+    onPreUpdate(_engine, _delta) {
+        if(!this.CamSet){
+            this.camera.strategy.elasticToActor(this.player.camFollowObj, 0.9, 0.9)
+            this.CamSet = true
+        }
     }
 
 }

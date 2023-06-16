@@ -8,14 +8,15 @@ import {TestLevel} from '../Levels/TestLevel.js';
 
 
 export class Enemy extends ex.Actor{
-    constructor(){
+    constructor(x, y, Engine){
         super({
             collisionType: CollisionType.Active,
             width: Resources.Enemy1.width, 
-            height: Resources.Enemy1.height
-            
-
+            height: Resources.Enemy1.height,
+            pos: ex.vec(x, y),
+            collisionGroup: Engine.Enemygroup
         });
+        console.log(Engine.Enemygroup)
     }
 
 

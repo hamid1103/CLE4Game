@@ -31,11 +31,12 @@ export class Player extends ex.Actor {
      * @param y y Start coord
      * @param playername of type PlayerName/ Determins what control scheme to use.
      */
-    constructor(x, y, playername = PlayerName.Player1) {
+    constructor(x, y, playername = PlayerName.Player1, Engine) {
         super({
             name: 'player',
             pos: ex.vec(x, y),
             collisionType: ex.CollisionType.Active,
+            collisionGroup: Engine.Playergroup
         });
         this.startpos = ex.vec(x, y)
         this.CurHealth = this.StartHealth
@@ -49,7 +50,7 @@ export class Player extends ex.Actor {
 
     onInitialize(_engine) {
 
-        this.addChild(this.camFollowObj)
+        this.scene.add(this.camFollowObj)
 
         switch (this.playername){
             case PlayerName.Player1:

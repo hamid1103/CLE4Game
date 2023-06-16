@@ -14,6 +14,22 @@ export class Game extends ex.Engine {
     state
     #arcade;
     #joystickListener;
+
+    Enemygroup = ex.CollisionGroupManager.create('enemygroup')
+    Playergroup = ex.CollisionGroupManager.create('playergroup')
+    Platformgroup = ex.CollisionGroupManager.create('platformgroup')
+    ItemGroup = ex.CollisionGroupManager.create('itemgroup')
+    PlayersCanCollideWith = ex.CollisionGroup.collidesWith([
+        this.Enemygroup,
+        this.Playergroup,
+        this.Platformgroup,
+        this.ItemGroup
+    ])
+
+    EnemiesCanCollideWith = ex.CollisionGroup.collidesWith([
+        this.Playergroup
+    ])
+
     constructor() {
         super({
             width: 1440,

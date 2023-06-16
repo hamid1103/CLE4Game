@@ -1,18 +1,18 @@
 import * as ex from 'excalibur'
-import { CollisionType, Sprite, Vector} from 'excalibur';
-import { Player } from '../Entities/Player.js';
+import {CollisionType, Sprite, Vector} from 'excalibur';
+import {Player} from '../Entities/Player.js';
 import {Resources, SpriteResources} from "../resources.js";
 import {TestLevel} from "../Levels/TestLevel.js";
 
 
-
-
-export class Platform extends ex.Actor{
+export class Platform extends ex.Actor {
     PixelplatformSprite = ex.Sprite.from(Resources.Pixelplatform)
-    constructor(x, y, type) {
+
+    constructor(x, y, type, Engine) {
         super({
-           collisionType: CollisionType.Fixed,
-           pos: ex.vec(x, y)
+            collisionType: CollisionType.Fixed,
+            pos: ex.vec(x, y),
+            collisionGroup: Engine.Platformgroup
         });
         this.startpos = ex.vec(x, y)
     }
@@ -27,16 +27,14 @@ export class Platform extends ex.Actor{
             this.on('collisionstart', (event) => this.hitSomething(event))
             this.scale = new Vector(1.5, 1.8);
         }
-        
-        this.collider.useBoxCollider(this.PixelplatformSprite.width,this.PixelplatformSprite.height);
+
+        this.collider.useBoxCollider(this.PixelplatformSprite.width, this.PixelplatformSprite.height);
     }
 
-    
 
-
-    hitSomething(event){
+    hitSomething(event) {
         if (event.other instanceof Player) {
-        console.log('player raakt de platform')
+            console.log('player raakt de platform')
 
         }
     }
