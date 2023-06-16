@@ -54,6 +54,6 @@ export class Background extends Actor{
     onInitialize() {
         this.graphics.use(Resources.Background.toSprite())
         this.pos = new Vector(720, -5550);
-        this.scale = new Vector(21.5,21.5)
+        this.scale = new Vector(21.2,21.5)
     }
 }
