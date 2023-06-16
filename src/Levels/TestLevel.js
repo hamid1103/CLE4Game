@@ -50,7 +50,6 @@ export class TestLevel extends ex.Scene{
           }
         }
 
-    
 
     }
 
