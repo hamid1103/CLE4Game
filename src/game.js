@@ -62,4 +62,4 @@ export class Game extends ex.Engine {
 }
 
 const newGame = new Game();
-//const devtool = new DevTool(newGame);
+const devtool = new DevTool(newGame);

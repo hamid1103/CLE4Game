@@ -17,6 +17,8 @@ export class Player extends ex.Actor {
 
     curPlayerKeys;
 
+    PlayerTexture
+
     /**
      *
      * @param x x Start coord
@@ -28,17 +30,16 @@ export class Player extends ex.Actor {
             name: 'player',
             pos: ex.vec(x, y),
             collisionType: ex.CollisionType.Active,
-            collider: ex.Shape.Box(18, 27, ex.Vector.Half, ex.vec(0, 0))
         });
         this.startpos = ex.vec(x, y)
         this.CurHealth = this.StartHealth
         this.playername = playername
-
-
+        this.scale = ex.vec(2, 2)
+        this.PlayerTexture = Sprite.from(Resources.TargetIcon)
+        this.collider.useBoxCollider(this.PlayerTexture.width, this.PlayerTexture.height)
 
     }
 
-    Target = Sprite.from(Resources.TargetIcon)
 
     onInitialize(_engine) {
 
@@ -70,7 +71,7 @@ export class Player extends ex.Actor {
 
         }
 
-        this.graphics.add('Sprite', this.Target)
+        this.graphics.add('Sprite', this.PlayerTexture)
         this.on('exitviewport', () => {
             this.pos = this.startpos;
         })
@@ -121,7 +122,6 @@ export class Player extends ex.Actor {
 
     onPreUpdate(_engine, _delta) {
         this.graphics.use('Sprite')
-
         this.vel.x = 0
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
