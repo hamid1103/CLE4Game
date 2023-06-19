@@ -23,6 +23,8 @@ export class Player extends ex.Actor {
 
     FlyRocket = false
 
+    Star = false
+
     curPlayerKeys;
 
     PlayerTexture
@@ -94,12 +96,18 @@ export class Player extends ex.Actor {
     }
 
     RemoveHeart() {
-        if (this.CurHealth > 0) {
-            this.CurHealth--
-        } else {
-            this.dead = true;
+        if (this.invisibility = false){
+            if (this.CurHealth > 0) {
+                this.CurHealth--
+            } 
+            else {
+                this.dead = true;
+            }
         }
+       
     }
+
+
 
     onFirstCollision(e) {
 
@@ -111,6 +119,15 @@ export class Player extends ex.Actor {
     setFlyRocket(ToF = true){
         this.FlyRocket = ToF
     }
+
+    setStar(ToF = true){
+        this.Star = ToF
+    }
+
+    setInvisibility(ToF = true){
+        this.invisibility = ToF
+    }
+
 
     exitCollision(e){
     }

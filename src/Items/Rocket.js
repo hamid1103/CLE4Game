@@ -1,6 +1,6 @@
 import {Item} from "../Core/Item.js";
 import {Resources} from "../resources.js";
-// import { ShowRocket } from "../Entities/ShowRocket.js";
+import {ShowRocket} from "../Entities/ShowRocket.js";
 
 export class Rocket extends Item{
     constructor(x, y, engine) {
@@ -10,8 +10,11 @@ export class Rocket extends Item{
     //Only executes when a player collides.
     Action(player) {
         player.setFlyRocket(true)
+        let ShowRK = new ShowRocket(player)
+        player.scene.add(ShowRK)
         setTimeout(()=>{
             player.setFlyRocket(false)
+            ShowRK.kill()
         }, 1500)
     }
 }

@@ -11,14 +11,13 @@ import {Nuclear} from "../Items/Nuclear.js";
 import {Star} from "../Items/Star.js";
 
 
-
 export class TestLevel extends ex.Scene {
     CamSet = false;
     PCam1;
     PCam2;
     curCam;
     onInitialize(_engine) {
-        this.StartLevel()
+        this.StartLevel() 
     }
 
 
@@ -44,10 +43,13 @@ export class TestLevel extends ex.Scene {
         this.add(platform)
 
 
+        let star = new Star(650, 800, 0, this.engine)
+        this.add(star)
+
 
         this.platforms = [];
         const prefabs =
-            [ 
+        [
                 [1, 0, 1, 1, 0, 1, 0, 0, 1, 0],
                 [0, 1, 0, 0, 1, 0, 1, 1, 0, 1],
                 [1, 0, 0, 1, 1, 0, 0, 1, 1, 0],
