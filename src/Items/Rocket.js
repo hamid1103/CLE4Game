@@ -3,7 +3,7 @@ import {Resources} from "../resources.js";
 // import { ShowRocket } from "../Entities/ShowRocket.js";
 
 export class Rocket extends Item{
-    constructor(x, y) {
+    constructor(x, y, Engine) {
         super(x, y, Resources.Rocket, Engine);
     }
 

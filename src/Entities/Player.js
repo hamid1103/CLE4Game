@@ -21,6 +21,8 @@ export class Player extends ex.Actor {
 
     JetPacking = false
 
+    FlyRocket = false
+
     curPlayerKeys;
 
     PlayerTexture
@@ -106,6 +108,10 @@ export class Player extends ex.Actor {
         this.JetPacking = ToF
     }
 
+    setFlyRocket(ToF = true){
+        this.FlyRocket = ToF
+    }
+
     exitCollision(e){
     }
     postCollision(e) {
@@ -144,6 +150,10 @@ export class Player extends ex.Actor {
         }
         if(this.JetPacking){
             this.vel.y =- 400
+            return
+        }
+        if(this.FlyRocket){
+            this.vel.y =- 800
             return
         }
 
