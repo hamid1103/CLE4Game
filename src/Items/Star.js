@@ -2,7 +2,7 @@ import * as ex from 'excalibur'
 import {Item} from "../Core/Item.js";
 import {Resources} from "../resources.js";
 
-export class Coin extends Item{
+export class Star extends Item{
     constructor(x, y, Engine) {
         super(x, y, Resources.Star, Engine);
     }

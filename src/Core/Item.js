@@ -16,7 +16,7 @@ export class Item extends ex.Actor {
         super({
             pos: ex.vec(x, y),
             collisionType: CollisionType.Passive,
-            collisionGroup: Engine.ItemGroup
+            //collisionGroup: Engine.ItemGroup
         });
         this.ItemTexture = texture
         this.ItemSprite = ex.Sprite.from(this.ItemTexture)

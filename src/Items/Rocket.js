@@ -3,8 +3,8 @@ import {Resources} from "../resources.js";
 // import { ShowRocket } from "../Entities/ShowRocket.js";
 
 export class Rocket extends Item{
-    constructor(x, y) {
-        super(x, y, Resources.Rocket, Engine);
+    constructor(x, y, engine) {
+        super(x, y, Resources.Rocket, engine);
     }
 
     //Only executes when a player collides.

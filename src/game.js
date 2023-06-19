@@ -7,13 +7,19 @@ import { Arcade } from "arcade-game"
 import {DevTool} from "@excaliburjs/dev-tools"; //Using catppuccin colors found in this package. Check here for more info https://github.com/catppuccin/catppuccin
 import { Platform } from './Core/Platform.js';
 import {Player, PlayerName} from "./Entities/Player.js";
-
+import {Jetpack} from "./Items/Jetpack.js";
+import {Nuclear} from "./Items/Nuclear.js";
+import {Rocket} from "./Items/Rocket.js";
+import {Coin} from "./Items/Coin.js";
+import {Star} from "./Items/Star.js";
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
     state
     #arcade;
     #joystickListener;
+
+    ItemList = [Coin, Jetpack, Nuclear, Rocket, Star]
 
     Enemygroup = ex.CollisionGroupManager.create('enemygroup')
     Playergroup = ex.CollisionGroupManager.create('playergroup')
@@ -57,6 +63,7 @@ export class Game extends ex.Engine {
         this.goToScene('TL')
 
     }
+
 
     #joyStickFound(e) {
         let joystick = this.#arcade.Joysticks[e.detail]

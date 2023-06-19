@@ -3,6 +3,7 @@ import {CollisionType, Vector} from 'excalibur';
 import {Player} from '../Entities/Player.js';
 import {Resources, SpriteResources} from "../resources.js";
 import {TestLevel} from "../Levels/TestLevel.js";
+import {Coin} from "../Items/Coin.js";
 
 
 export class Platform extends ex.Actor {
@@ -17,9 +18,17 @@ export class Platform extends ex.Actor {
         });
         this.body.group = Engine.Platformgroup;
         this.startpos = ex.vec(x, y)
+        this.engine = Engine
     }
-
+    Seen = false
     onInitialize(engine) {
+        this.on('enterviewport', ()=>{
+            this.Seen = true
+        })
+        this.on('exitviewport', ()=>{
+            if(this.Seen)
+                this.kill()
+        })
         if (this.type === 0) {
             this.graphics.use(this.PixelplatformSprite)
             this.on('collisionstart', (event) => {
@@ -38,7 +47,8 @@ export class Platform extends ex.Actor {
                 }
             })
             this.scale = new Vector(0.2, 0.2);
-        } else {
+        } else
+        {
             this.graphics.use(this.PixelplatformSprite)
             this.on('collisionstart', (event) => {
                 this.hitSomething(event)
@@ -64,6 +74,12 @@ export class Platform extends ex.Actor {
                 }
             })
             this.scale = new Vector(1.5, 1.8);
+        }
+
+        if(Math.floor(Math.random() * 2) === 1) {
+            let itemIndex = Math.floor(Math.random() * engine.ItemList.length)
+            let newItem = new engine.ItemList[itemIndex](this.pos.x, this.pos.y - 30, engine)
+            this.scene.add(newItem)
         }
 
         this.collider.useBoxCollider(this.PixelplatformSprite.width, this.PixelplatformSprite.height);
