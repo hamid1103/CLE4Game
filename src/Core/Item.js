@@ -23,11 +23,19 @@ export class Item extends ex.Actor {
         this.collider.useBoxCollider(this.ItemSprite.width, this.ItemSprite.height)
     }
 
+    Seen = false
     onInitialize(_engine) {
+        this.on('enterviewport', ()=>{
+            this.Seen = true
+        })
+        this.on('exitviewport', ()=>{
+            if(this.Seen){
+                this.kill()
+            }
+        })
         this.on('collisionstart', (e) => {
-            console.log('Collision')
+
             if (e.other.hasTag('Player')) {
-                console.log('Collided with player')
                 this.Action(e.other);
                 this.kill()
             }

@@ -48,7 +48,7 @@ export class TestLevel extends ex.Scene {
 
 
         this.platforms = [];
-        const prefabs =
+        this.prefabs =
         [
                 [1, 0, 1, 1, 0, 1, 0, 0, 1, 0],
                 [0, 1, 0, 0, 1, 0, 1, 1, 0, 1],
@@ -101,27 +101,37 @@ export class TestLevel extends ex.Scene {
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
             ]
 
-        const numRows = 100;
-        const numCols = 10;
+        this.numRows = 50;
+        this.numCols = 10;
 
 
-        for (let row = 0; row < numRows; row++) {
-            let random = Math.floor(Math.random() * prefabs.length);
-            this.platforms.push(prefabs[random]);
-            const emptyRow = Array(numCols).fill(0);
+        for (let row = 0; row < this.numRows; row++) {
+            let random = Math.floor(Math.random() * this.prefabs.length);
+            this.platforms.push(this.prefabs[random]);
+            const emptyRow = Array(this.numCols).fill(0);
             this.platforms.push(emptyRow);
         }
-
+        this.lastrow = false;
         // 1440 breedte
         for (let i = 0; i < this.platforms.length; i++) {
+            let CINDEX = i;
+            if(CINDEX === this.platforms.length - 3){
+                this.lastrow = true
+                console.log(CINDEX + ' TRUE')
+            }
             let j = 855;
             let posy = j - (i * 45)
             let curRow = this.platforms[i]
             for(let k= 0; k < curRow.length; k++){
                 let b = 1440
                 let posx = (b/curRow.length) + 150*k
-                if(curRow[k] == 1){
+                if(curRow[k] === 1){
                     let newplatform = new Platform(posx, posy, 0, this.engine)
+                    console.log(this.lastrow + 'CHECK NOW')
+                    if(this.lastrow === true){
+                        console.log('Set on ')
+                        newplatform.setSRTT()
+                    }
                     this.add(newplatform)
                 }else if(curRow[k] == 0){
                     if(Math.floor(Math.random() * 12) === 3) {
@@ -137,6 +147,50 @@ export class TestLevel extends ex.Scene {
             }
         }
         this.CTAI = this.platforms.length
+
+    }
+
+    SpawnMorePlatforms(){
+        for (let newrowS = 0; newrowS < this.numRows; newrowS++) {
+            let random = Math.floor(Math.random() * this.prefabs.length);
+            this.platforms.push(this.prefabs[random]);
+            const emptyRow = Array(this.numCols).fill(0);
+            this.platforms.push(emptyRow);
+            console.log(this.prefabs[random])
+        }
+
+        for (this.CTAI < (this.platforms.length - 1); this.CTAI++;) {
+            console.log(this.CTAI)
+            let j = 855;
+            let posy = j - (this.CTAI * 45)
+            console.log(this.platforms[this.CTAI-1])
+            let curRow = this.platforms[this.CTAI - 1]
+            if(curRow === undefined){
+                return
+            }
+            for(let k= 0; k < curRow.length; k++){
+                let b = 1440
+                let posx = (b/curRow.length) + 150*k
+                if(curRow[k] == 1){
+                    let newplatform = new Platform(posx, posy, 0, this.engine)
+                    newplatform.YZINDEX = this.CTAI-1 + '-'+ k
+                    if(this.CTAI-1 === this.platforms.length - 7){
+                        newplatform.SpawnRowTrigger = true
+                    }
+                    this.add(newplatform)
+                }else if(curRow[k] == 0){
+                    if(Math.floor(Math.random() * 12) === 3) {
+                        let newItem
+                        let Rand = Math.floor(Math.random() * 100)
+                        if (Rand < 20) {newItem = new Rocket(posx, posy, this.engine)} else
+                        if (Rand >= 20 && Rand < 30) {newItem = new Jetpack(posx, posy, this.engine)} else
+                        if (Rand >= 30 && Rand < 75) {newItem = new Star(posx, posy, this.engine)} else
+                        if (Rand >= 75 && Rand < 100) {newItem = new Nuclear(posx, posy, this.engine)}
+                        this.add(newItem)
+                    }
+                }
+            }
+        }
 
     }
 

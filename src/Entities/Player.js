@@ -1,6 +1,6 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
-import {Shape, Sprite} from "excalibur";
+import {Input, Shape, Sprite} from "excalibur";
 import {CameraFollow} from "./CameraFollow.js";
 
 export var PlayerName = {
@@ -162,6 +162,15 @@ export class Player extends ex.Actor {
             this.vel.x = 200
         }
 
+        if(this.scene.engine.input.keyboard.wasPressed(Input.Keys.C)){
+            if(this.FlyRocket){
+                this.setFlyRocket(false)
+            }
+            else
+            {
+                this.setFlyRocket(true)
+            }
+        }
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Left) || this.goLeft) {
             this.vel.x = -200
         }
