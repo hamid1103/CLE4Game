@@ -55,6 +55,14 @@ export class Platform extends ex.Actor {
                     console.log('player ' + e.other.name + ' left')
                 }
             })
+            this.on('precollision', (e)=>{
+                if(e.other instanceof Player && e.side === ex.Side.Bottom){
+                    e.other.body.collisionType = CollisionType.Passive
+                    setTimeout(()=>{
+                        e.other.body.collisionType = ex.CollisionType.Active
+                    }, 25)
+                }
+            })
             this.scale = new Vector(1.5, 1.8);
         }
 

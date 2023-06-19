@@ -32,8 +32,7 @@ export class TestLevel extends ex.Scene {
         this.add(this.player2)
         this.PCam2 = this.player2.camFollowObj
 
-        let TestJetPack = new Jetpack(750, 750, this.engine)
-        this.add(TestJetPack)
+
 
         let TestCoin2 = new Coin(750, 850, this.engine)
         this.add(TestCoin2)
@@ -41,8 +40,6 @@ export class TestLevel extends ex.Scene {
         let platform = new Platform(650, 800, 0, this.engine)
         this.add(platform)
 
-        let Kwal = new Enemy(900, 700, this.engine)
-        this.add(Kwal)
 
 
         const platforms = [];
