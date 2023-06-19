@@ -19,7 +19,7 @@ export class Game extends ex.Engine {
     #arcade;
     #joystickListener;
 
-    ItemList = [Coin, Jetpack, Nuclear, Rocket, Star]
+    ItemList = [Jetpack, Nuclear, Rocket, Star]
 
     Enemygroup = ex.CollisionGroupManager.create('enemygroup')
     Playergroup = ex.CollisionGroupManager.create('playergroup')
@@ -54,10 +54,8 @@ export class Game extends ex.Engine {
     }
 
     startGame(){
-        this.#arcade = new Arcade(this, true, false)
-        this.#joystickListener = (e) => this.#joyStickFound(e)
-        document.addEventListener("joystickcreated",  this.#joystickListener)
-
+        this.#arcade = new Arcade(this, true, true)
+        document.addEventListener("joystickcreated",  (e) => this.#joyStickFound(e))
         const testLevel = new TestLevel()
         this.addScene('TL', testLevel)
         this.goToScene('TL')

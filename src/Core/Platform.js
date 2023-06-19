@@ -75,11 +75,9 @@ export class Platform extends ex.Actor {
             })
             this.scale = new Vector(1.5, 1.8);
         }
-
-        if(Math.floor(Math.random() * 2) === 1) {
-            let itemIndex = Math.floor(Math.random() * engine.ItemList.length)
-            let newItem = new engine.ItemList[itemIndex](this.pos.x, this.pos.y - 30, engine)
-            this.scene.add(newItem)
+        if(Math.floor(Math.random() * 4) === 1){
+            let newCoint = new Coin(this.pos.x, this.pos.y -30, this.engine)
+            this.scene.add(newCoint)
         }
 
         this.collider.useBoxCollider(this.PixelplatformSprite.width, this.PixelplatformSprite.height);
