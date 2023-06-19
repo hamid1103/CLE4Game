@@ -15,7 +15,7 @@ export class TestLevel extends ex.Scene {
     PCam2;
     curCam;
     onInitialize(_engine) {
-        this.StartLevel()
+        this.StartLevel() 
     }
 
 
@@ -47,7 +47,7 @@ export class TestLevel extends ex.Scene {
 
         const platforms = [];
         const prefabs =
-            [ 
+        [
                 [1, 0, 1, 1, 0, 1, 0, 0, 1, 0],
                 [0, 1, 0, 0, 1, 0, 1, 1, 0, 1],
                 [1, 0, 0, 1, 1, 0, 0, 1, 1, 0],
@@ -98,6 +98,7 @@ export class TestLevel extends ex.Scene {
                 [1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
             ]
+
 
         const numRows = 150;
         const numCols = 10;

@@ -96,12 +96,18 @@ export class Player extends ex.Actor {
     }
 
     RemoveHeart() {
-        if (this.CurHealth > 0) {
-            this.CurHealth--
-        } else {
-            this.dead = true;
+        if (this.invisibility = false){
+            if (this.CurHealth > 0) {
+                this.CurHealth--
+            } 
+            else {
+                this.dead = true;
+            }
         }
+       
     }
+
+
 
     onFirstCollision(e) {
 
@@ -118,9 +124,9 @@ export class Player extends ex.Actor {
         this.Star = ToF
     }
 
-
-
-
+    setInvisibility(ToF = true){
+        this.invisibility = ToF
+    }
 
 
     exitCollision(e){
