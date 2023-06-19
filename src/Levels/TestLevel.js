@@ -6,7 +6,7 @@ import {Background} from "../Core/Area.js";
 
 import {Coin} from "../Items/Coin.js";
 import {Jetpack} from "../Items/Jetpack.js";
-
+import { Star } from '../Items/Star.js';
 
 
 export class TestLevel extends ex.Scene {
@@ -40,6 +40,9 @@ export class TestLevel extends ex.Scene {
         let platform = new Platform(650, 800, 0, this.engine)
         this.add(platform)
 
+
+        let star = new Star(650, 800, 0, this.engine)
+        this.add(star)
 
 
         const platforms = [];

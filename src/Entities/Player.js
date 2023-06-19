@@ -23,6 +23,8 @@ export class Player extends ex.Actor {
 
     FlyRocket = false
 
+    Star = false
+
     curPlayerKeys;
 
     PlayerTexture
@@ -111,6 +113,15 @@ export class Player extends ex.Actor {
     setFlyRocket(ToF = true){
         this.FlyRocket = ToF
     }
+
+    setStar(ToF = true){
+        this.Star = ToF
+    }
+
+
+
+
+
 
     exitCollision(e){
     }
