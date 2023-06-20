@@ -45,7 +45,10 @@ export class Game extends ex.Engine {
             //suppressPlayButton: true,
             pointerScope: ex.Input.PointerScope.Canvas,
             canvasElement: document.getElementById('GC1'),
-            backgroundColor: ex.Color.fromHex(variants.mocha.base.hex)
+            backgroundColor: ex.Color.fromHex(variants.mocha.base.hex),
+            configurePerformanceCanvas2DFallback: {
+                allow: false
+            }
         });
         Physics.acc = ex.vec(0, 800) //Setting gravity
         this.start(loader).then(() => {
