@@ -41,7 +41,7 @@ export class Game extends ex.Engine {
             width: 1440,
             height: 900,
             antialiasing: false,
-            fixedUpdateFps: 60,
+            //fixedUpdateFps: 60,
             //suppressPlayButton: true,
             pointerScope: ex.Input.PointerScope.Canvas,
             canvasElement: document.getElementById('GC1'),
