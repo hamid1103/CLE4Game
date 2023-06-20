@@ -28,6 +28,7 @@ export class Player extends ex.Actor {
     curPlayerKeys;
 
     PlayerTexture
+    pointsLabel;
 
     /**
      *
@@ -49,12 +50,20 @@ export class Player extends ex.Actor {
         this.PlayerTexture = Sprite.from(Resources.TargetIcon)
         this.collider.useBoxCollider(this.PlayerTexture.width, this.PlayerTexture.height)
         this.camFollowObj = new CameraFollow(this);
+
+        this.pointsLabel = new ex.Label({
+            text: `points: ${this.points}`,
+            pos: ex.vec(650, 700),
+            font: new ex.Font(20, "sans-serif"),
+            color: ex.Color.White
+        });
     }
 
 
     onInitialize(_engine) {
 
         this.scene.add(this.camFollowObj)
+        this.scene.add(this.pointsLabel);
 
         switch (this.playername){
             case PlayerName.Player1:
@@ -106,6 +115,14 @@ export class Player extends ex.Actor {
         }
        
     }
+
+    
+    increaseScore(points) {
+        this.points += points;
+        this.pointsLabel.text = "Points: " + this.points;
+    }
+
+    
 
 
 
