@@ -10,6 +10,7 @@ import {Rocket} from "../Items/Rocket.js";
 import {Nuclear} from "../Items/Nuclear.js";
 import {Star} from "../Items/Star.js";
 import {chunk} from "../Core/chunk.js";
+import {ElecPlatform} from "../Core/ElecPlatform.js";
 
 
 export class TestLevel extends ex.Scene {
@@ -100,10 +101,10 @@ export class TestLevel extends ex.Scene {
                 [0, 1, 0, 1, 0, 1, 1, 0, 0, 1],
                 [1, 0, 1, 0, 0, 1, 1, 0, 1, 0],
                 [0, 1, 0, 1, 1, 0, 0, 1, 0, 1],
-                [1, 1, 0, 0, 0, 1, 0, 1, 1, 0],
+                [1, 2, 0, 0, 0, 1, 0, 1, 1, 0],
                 [0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-                [1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
+                [1, 0, 0, 0, 1, 2, 0, 1, 1, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
                 [0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
@@ -113,9 +114,17 @@ export class TestLevel extends ex.Scene {
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
                 [1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
-                [0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
+                [0, 0, 1, 0, 1, 1, 1, 0, 1, 0],
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
-                [1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
+                [1, 0, 1, 0, 0, 1, 0, 1, 1, 0],
+                [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 0, 2, 1, 0, 1, 0],
+                [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+                [1, 0, 1, 0, 2, 1, 0, 1, 1, 0],
+                [1, 1, 1, 0, 2, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 0, 1, 1, 2, 1, 0],
+                [0, 0, 2, 1, 0, 1, 1, 2, 1, 0],
+                [1, 0, 1, 0, 1, 1, 0, 1, 2, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
             ]
 
@@ -158,7 +167,7 @@ export class TestLevel extends ex.Scene {
                     if (Math.floor(Math.random() * 12) === 3) {
                         let newItem
                         let Rand = Math.floor(Math.random() * 100)
-                        if (Rand >= 3 && Rand < 15) {
+                        if (Rand >= 2 && Rand < 10) {
                             newItem = new Jetpack(posx, posy, this.engine)
                         } else if (Rand >= 15 && Rand < 23) {
                             newItem = new Star(posx, posy, this.engine)
@@ -168,6 +177,14 @@ export class TestLevel extends ex.Scene {
                         if (newItem !== undefined)
                             this.add(newItem)
                     }
+                } else if(curRow[k] === 2){
+                    let newElectPlatform = new ElecPlatform(posx, posy, this.engine)
+                    if (this.lastrow === true) {
+                        console.log('Set on ')
+                        newElectPlatform.setSRTT()
+                        this.lastrow = false
+                    }
+                    this.add(newElectPlatform)
                 }
             }
         }
@@ -210,7 +227,7 @@ export class TestLevel extends ex.Scene {
                     if (Math.floor(Math.random() * 12) === 3) {
                         let newItem
                         let Rand = Math.floor(Math.random() * 100)
-                        if (Rand >= 3 && Rand < 15) {
+                        if (Rand >= 2 && Rand < 10) {
                             newItem = new Jetpack(posx, posy, this.engine)
                         } else if (Rand >= 15 && Rand < 23) {
                             newItem = new Star(posx, posy, this.engine)
