@@ -53,7 +53,7 @@ export class Player extends ex.Actor {
 
         this.pointsLabel = new ex.Label({
             text: `points: ${this.points}`,
-            pos: ex.vec(650, 700),
+            pos: ex.vec(400, 700),
             font: new ex.Font(20, "sans-serif"),
             color: ex.Color.White
         });
@@ -222,6 +222,7 @@ export class Player extends ex.Actor {
             }
         }
 
+        this.pointsLabel.pos.y= this.pos.y
     }
 
 }

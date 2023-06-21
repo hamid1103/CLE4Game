@@ -16,10 +16,6 @@ export class Star extends Item{
         setTimeout(()=>{
             player.setStar(false)
             ShowSR.kill()
-        }, 1000)
-
-
-
-
+        })
     }
 }
