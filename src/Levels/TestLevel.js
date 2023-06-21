@@ -9,6 +9,7 @@ import {Jetpack} from "../Items/Jetpack.js";
 import {Rocket} from "../Items/Rocket.js";
 import {Nuclear} from "../Items/Nuclear.js";
 import {Star} from "../Items/Star.js";
+import {chunk} from "../Core/chunk.js";
 
 
 export class TestLevel extends ex.Scene {
@@ -25,6 +26,11 @@ export class TestLevel extends ex.Scene {
     StartLevel() {
         let background = new Background()
         this.add(background)
+        //starterchunk is 600 height
+        //spawn first non-starter chunk at 0, -600
+        //non-starter chunk is 211 height
+        let nbgc = new chunk(-600)
+        this.add(nbgc)
 
         this.player = new Player(744, 790, PlayerName.Player1, this.engine)
         this.add(this.player)
@@ -204,9 +210,7 @@ export class TestLevel extends ex.Scene {
                     if (Math.floor(Math.random() * 12) === 3) {
                         let newItem
                         let Rand = Math.floor(Math.random() * 100)
-                        if (Rand < 2) {
-                            newItem = new Rocket(posx, posy, this.engine)
-                        } else if (Rand >= 3 && Rand < 15) {
+                        if (Rand >= 3 && Rand < 15) {
                             newItem = new Jetpack(posx, posy, this.engine)
                         } else if (Rand >= 15 && Rand < 23) {
                             newItem = new Star(posx, posy, this.engine)
