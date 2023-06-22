@@ -21,8 +21,7 @@ export class healthbar extends Actor {
                 spriteHeight: 144
             }
         });
-
-        this.pos = new Vector(700, 700);
+        this.scale = new Vector(.09, .09)
         this.graphics.use(this.spritesheet.getSprite(0, this.hindex));
     }
 

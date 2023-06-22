@@ -45,9 +45,7 @@ export class TestLevel extends ex.Scene {
 
         let testEnemy = new Enemy(700, 700, this.engine)
         this.add(testEnemy)
-
-        let testHealth = new healthbar(this.player.CurHealth)
-        this.add(testHealth)
+        
         // let TestCoin2 = new Coin(750, 850, this.engine)
         // this.add(TestCoin2)
 

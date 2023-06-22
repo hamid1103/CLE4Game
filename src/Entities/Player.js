@@ -2,6 +2,7 @@ import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
 import {Input, Shape, Sprite} from "excalibur";
 import {CameraFollow} from "./CameraFollow.js";
+import { healthbar } from '../Core/health.js';
 
 export var PlayerName = {
     Player1: 'Player1',
@@ -31,6 +32,8 @@ export class Player extends ex.Actor {
     PlayerTexture
     pointsLabel;
 
+    hpb;
+
     /**
      *
      * @param x x Start coord
@@ -46,6 +49,7 @@ export class Player extends ex.Actor {
         });
         this.startpos = ex.vec(x, y)
         this.CurHealth = this.StartHealth
+        this.hpb = new healthbar(this.CurHealth)
         this.playername = playername
         this.scale = ex.vec(2.5, 2.5)
         this.PlayerTexture = Sprite.from(Resources.TargetIcon)
@@ -104,7 +108,7 @@ export class Player extends ex.Actor {
         })
         this.addTag('Player')
         this.graphics.use('Sprite')
-
+        this.addChild(this.hpb)
     }
 
     ItemHolderUI
