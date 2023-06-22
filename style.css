@@ -1,4 +1,30 @@
+@import "@catppuccin/palette/style";
 body{
   margin: 0;
   display: flex;
+}
+#overlay{
+  position: fixed;
+  width: 1440px;
+  left: 0;
+  margin: 0;
+  top: 0;
+}
+.ItemHolder {
+  position: absolute;
+  top: 20px;
+  background-color: var(--ctp-mocha-base);
+  border: var(--ctp-mocha-crust) solid 2px;
+  width: 5em;
+  height: 5em;
+}
+.ItemHolder#p1{
+  left: 10px;
+}
+.ItemHolder#p2{
+  right: 10px;
+}
+.ItemHolder img {
+  width: 90%;
+  object-fit: fill;
 }

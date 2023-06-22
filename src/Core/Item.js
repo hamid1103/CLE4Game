@@ -1,10 +1,12 @@
 import * as ex from 'excalibur'
 import {CollisionType, Sprite, Vector} from 'excalibur';
 import {Resources, SpriteResources} from "../resources.js";
+import {Player} from "../Entities/Player.js";
 
 export class Item extends ex.Actor {
     ItemTexture;
     ItemSprite;
+    Action;
 
     /**
      *
@@ -12,8 +14,9 @@ export class Item extends ex.Actor {
      * @param y Spawn Y
      * @param texture Resources.TextureName
      */
-    constructor(x, y, texture, Engine) {
+    constructor(x, y, texture, name = 'GenericItem') {
         super({
+            name: name,
             pos: ex.vec(x, y),
             collisionType: CollisionType.Passive,
             //collisionGroup: Engine.ItemGroup
@@ -24,19 +27,20 @@ export class Item extends ex.Actor {
     }
 
     Seen = false
+
     onInitialize(_engine) {
-        this.on('enterviewport', ()=>{
+        this.on('enterviewport', () => {
             this.Seen = true
         })
-        this.on('exitviewport', ()=>{
-            if(this.Seen){
+        this.on('exitviewport', () => {
+            if (this.Seen) {
                 this.kill()
             }
         })
         this.on('collisionstart', (e) => {
-
-            if (e.other.hasTag('Player')) {
-                this.Action(e.other);
+            if (e.other instanceof Player) {
+                let newInvItem = new InvItem(this.name, this.ItemSprite, this.Action)
+                e.other.heldItem = newInvItem
                 this.kill()
             }
         })
@@ -44,8 +48,22 @@ export class Item extends ex.Actor {
         this.graphics.use('ItemSprite')
     }
 
-    Action(player) {
+}
 
+export class InvItem {
+    action;
+    name;
+    spritepath
+    sprite;
+
+    constructor(name, sprite, action) {
+        this.action = action
+        this.name = name
+        this.sprite = sprite
+        this.spritepath = this.sprite.image.path
     }
 
+    useItem(player) {
+        this.action(player)
+    }
 }

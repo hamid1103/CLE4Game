@@ -16,6 +16,7 @@ export class Player extends ex.Actor {
     CurHealth;
     dead;
     playername;
+    heldItem;
 
     camFollowObj;
 
@@ -61,7 +62,7 @@ export class Player extends ex.Actor {
 
 
     onInitialize(_engine) {
-
+        this.MakeItemHolderUI()
         this.scene.add(this.camFollowObj)
         this.scene.add(this.pointsLabel);
 
@@ -72,6 +73,7 @@ export class Player extends ex.Actor {
                     Right:ex.Input.Keys.Right,
                     Up:ex.Input.Keys.Up
                 }
+                document.addEventListener("joystick0button4", () => this.useItem());
                 document.addEventListener("joystick0button5", () => this.setUp());
                 document.addEventListener("joystick0left", () => this.setLeft());
                 document.addEventListener("joystick0right", () => this.setRight());
@@ -83,6 +85,7 @@ export class Player extends ex.Actor {
                     Right:ex.Input.Keys.D,
                     Up:ex.Input.Keys.W
                 }
+                document.addEventListener("joystick1button4", () => this.useItem());
                 document.addEventListener("joystick1button5", () => this.setUp());
                 document.addEventListener("joystick1left", () => this.setLeft());
                 document.addEventListener("joystick1right", () => this.setRight());
@@ -104,6 +107,26 @@ export class Player extends ex.Actor {
 
     }
 
+    ItemHolderUI
+    MakeItemHolderUI(){
+        let overlay = document.getElementById('overlay')
+        this.ItemHolderUI = document.createElement('div')
+        this.ItemHolderUI.classList.add('ItemHolder')
+        this.ItemHolderUI.IMGHold = document.createElement('img')
+        this.ItemHolderUI.appendChild(this.ItemHolderUI.IMGHold)
+        switch (this.playername){
+            case PlayerName.Player1:
+                this.ItemHolderUI.id = 'p1'
+                this.ItemHolderUI.IMGHold.id = 'IMGP1'
+                break;
+            case PlayerName.Player2:
+                this.ItemHolderUI.id = 'p2'
+                this.ItemHolderUI.IMGHold.id = 'IMGP2'
+                break;
+        }
+        overlay.appendChild(this.ItemHolderUI)
+    }
+
     RemoveHeart() {
         if (this.invisibility = false){
             if (this.CurHealth > 0) {
@@ -116,6 +139,9 @@ export class Player extends ex.Actor {
        
     }
 
+    useItem(){
+        this.heldItem.useItem(this)
+    }
     
     increaseScore(points) {
         this.points += points;
@@ -174,6 +200,15 @@ export class Player extends ex.Actor {
     }
 
     onPreUpdate(_engine, _delta) {
+        if(this.heldItem !== undefined){
+            this.ItemHolderUI.IMGHold.style.display = 'block'
+            this.ItemHolderUI.IMGHold.src = this.heldItem.spritepath
+        }
+        else
+        {
+            this.ItemHolderUI.IMGHold.src = ''
+            this.ItemHolderUI.IMGHold.style.display = 'hidden'
+        }
         this.vel.x = 0
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
