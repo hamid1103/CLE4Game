@@ -8,6 +8,7 @@ export class healthbar extends Actor {
     constructor(curHealth) {
         super();
         this.state = curHealth;
+        this.hindex = 3 -curHealth;
     }
 
     onInitialize() {
@@ -22,7 +23,7 @@ export class healthbar extends Actor {
         });
 
         this.pos = new Vector(700, 700);
-        this.graphics.use(this.spritesheet.getSprite(0, this.state));
+        this.graphics.use(this.spritesheet.getSprite(0, this.hindex));
     }
 
     onHealthUpdate(updatedHealth) {

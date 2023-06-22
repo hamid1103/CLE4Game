@@ -11,6 +11,7 @@ import {Nuclear} from "../Items/Nuclear.js";
 import {Star} from "../Items/Star.js";
 import {chunk} from "../Core/chunk.js";
 import {ElecPlatform} from "../Core/ElecPlatform.js";
+import { healthbar } from '../Core/health.js';
 
 
 export class TestLevel extends ex.Scene {
@@ -45,6 +46,8 @@ export class TestLevel extends ex.Scene {
         let testEnemy = new Enemy(700, 700, this.engine)
         this.add(testEnemy)
 
+        let testHealth = new healthbar(this.player.CurHealth)
+        this.add(testHealth)
         // let TestCoin2 = new Coin(750, 850, this.engine)
         // this.add(TestCoin2)
 

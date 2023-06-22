@@ -55,6 +55,7 @@ export class Enemy extends ex.Actor{
         if (event.other instanceof Player) {
             console.log('hit player')
             this.kill()
+            event.other.RemoveHeart()
         }
     }
 
