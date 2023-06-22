@@ -66,7 +66,7 @@ export class ElecPlatform extends ex.Actor {
                 }, 25)
             }
         })
-        this.scale = new Vector(1.5, 1.8);
+        this.scale = new Vector(0.75, 0.5);
 
         this.collider.useBoxCollider(this.PixelplatformSprite.width, this.PixelplatformSprite.height);
     }
