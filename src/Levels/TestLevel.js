@@ -180,7 +180,7 @@ export class TestLevel extends ex.Scene {
                         let Rand = Math.floor(Math.random() * 100)
                         if (Rand >= 2 && Rand < 10) {
                             newItem = new Jetpack(posx, posy, this.engine)
-                        } else if (Rand >= 15 && Rand < 23) {
+                        } else if (Rand >= 19 && Rand < 23) {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
@@ -250,7 +250,7 @@ export class TestLevel extends ex.Scene {
                         let Rand = Math.floor(Math.random() * 100)
                         if (Rand >= 2 && Rand < 10) {
                             newItem = new Jetpack(posx, posy, this.engine)
-                        } else if (Rand >= 15 && Rand < 23) {
+                        } else if (Rand >= 19 && Rand < 23) {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
