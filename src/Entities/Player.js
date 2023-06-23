@@ -27,6 +27,7 @@ export class Player extends ex.Actor {
     FlyRocket = false
 
     Star = false
+    amount = 0;
 
     curPlayerKeys;
 
@@ -90,6 +91,7 @@ export class Player extends ex.Actor {
                 document.addEventListener("joystick0neutral", () => this.setNeutral());
                 break;
             case PlayerName.Player2:
+                this.PlayerTexture = Sprite.from(Resources.TargetIcon2)
                 this.curPlayerKeys = {
                     Left: ex.Input.Keys.A,
                     Right: ex.Input.Keys.D,
@@ -273,6 +275,23 @@ export class Player extends ex.Actor {
             return
         }
 
+
+        // if(this.Star){
+        //     if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
+        //         // Double Jump implementation
+        //         if (this.jumpCount = 2) {
+        //           this.jump();
+        //         }
+        //         if (this.goUp) {
+        //           this.goUp = false
+        //         }
+        //       }
+
+
+        // }
+
+     
+
         if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
             this.vel.y = -400;
             this.onGround = false;
@@ -299,5 +318,7 @@ export class Player extends ex.Actor {
         }
         this.pointsLabel.pos.y = this.pos.y
     }
+
+    
 
 }
