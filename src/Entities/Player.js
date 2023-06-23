@@ -158,7 +158,7 @@ export class Player extends ex.Actor {
     RemoveHeart() {
         if (this.invisibility == false)
         {
-            console.log('hjdhrgjk')
+            
             if (this.CurHealth > 0) {
               
                 this.CurHealth--
@@ -175,10 +175,6 @@ export class Player extends ex.Actor {
         this.heldItem.useItem(this)
     }
     
-    increaseScore(points) {
-        this.points += points;
-        this.pointsLabel.text = "Points: " + this.points;
-    }
 
     onFirstCollision(e) {
 
@@ -237,6 +233,8 @@ export class Player extends ex.Actor {
             this.ItemHolderUI.IMGHold.src = ''
             this.ItemHolderUI.IMGHold.style.display = 'hidden'
         }
+
+        this.pointsLabel.text = `points: ${this.points}`
 
         // this.pointerY = _engine.input.pointers.primary.lastScreenPos.y;
 
