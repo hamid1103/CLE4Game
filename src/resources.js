@@ -18,6 +18,7 @@ import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
 import startscreen from './assets/finishedAssets/Startscreen.png'
 import startbutton from './assets/finishedAssets/Start.png'
 import BreakPlatformItem from './assets/finishedAssets/BreakPlatformItem.png'
+import luckyblock from './assets/finishedAssets/luckyblock.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
@@ -39,6 +40,7 @@ const Resources = {
     StartScreen: new ImageSource(startscreen),
     Startbutton: new ImageSource(startbutton),
     BreakPlatformItem: new ImageSource(BreakPlatformItem),
+    LuckyBlock: new ImageSource(luckyblock)
 }
 
 const SpriteResources = {
