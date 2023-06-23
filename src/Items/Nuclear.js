@@ -10,7 +10,7 @@ export class Nuclear extends Item{
     }
 
     //Only executes when a player collides.
-    Action(player) {
+    Action = (player) => {
         let nuke = new ShowNuclear(player)
         player.scene.add(nuke)
 

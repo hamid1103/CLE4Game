@@ -12,6 +12,7 @@ import {Star} from "../Items/Star.js";
 import {chunk} from "../Core/chunk.js";
 import {ElecPlatform} from "../Core/ElecPlatform.js";
 import { healthbar } from '../Core/health.js';
+import {BreakablePlatform} from "../Core/breakablePlatform.js";
 
 
 export class TestLevel extends ex.Scene {
@@ -85,19 +86,19 @@ export class TestLevel extends ex.Scene {
                 [0, 0, 0, 1, 0, 0, 1, 0, 0, 1],
                 [0, 1, 0, 1, 1, 1, 0, 0, 0, 0],
                 [0, 0, 1, 0, 1, 1, 0, 0, 0, 0],
-                [1, 0, 1, 0, 0, 0, 0, 1, 1, 0],
+                [1, 0, 3, 0, 0, 0, 0, 1, 1, 0],
                 [0, 1, 1, 0, 1, 1, 0, 0, 1, 0],
                 [1, 1, 0, 0, 0, 1, 1, 0, 1, 0],
                 [0, 0, 1, 1, 0, 1, 0, 1, 1, 0],
                 [1, 0, 0, 1, 1, 0, 1, 0, 0, 1],
                 [1, 0, 0, 1, 0, 1, 1, 0, 0, 1],
                 [0, 1, 1, 0, 1, 0, 1, 0, 1, 1],
-                [1, 0, 0, 0, 1, 0, 1, 0, 1, 1],
+                [1, 0, 0, 0, 3, 0, 1, 0, 1, 1],
                 [0, 0, 1, 1, 0, 1, 1, 0, 0, 1],
                 [1, 1, 0, 1, 0, 0, 0, 1, 1, 0],
                 [0, 1, 0, 0, 1, 1, 0, 0, 1, 1],
                 [1, 0, 1, 1, 0, 0, 1, 1, 0, 0],
-                [0, 1, 1, 0, 0, 1, 1, 0, 1, 0],
+                [0, 1, 1, 0, 3, 1, 1, 0, 1, 0],
                 [1, 0, 1, 0, 1, 1, 0, 0, 1, 0],
                 [0, 1, 0, 1, 0, 1, 1, 0, 0, 1],
                 [1, 0, 1, 0, 0, 1, 1, 0, 1, 0],
@@ -115,7 +116,7 @@ export class TestLevel extends ex.Scene {
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
                 [1, 0, 0, 0, 1, 1, 0, 1, 1, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
-                [0, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+                [0, 0, 1, 0, 1, 1, 1, 0, 3, 0],
                 [0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
                 [1, 0, 1, 0, 0, 1, 0, 1, 1, 0],
                 [1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
@@ -186,6 +187,14 @@ export class TestLevel extends ex.Scene {
                         this.lastrow = false
                     }
                     this.add(newElectPlatform)
+                } else if(curRow[k] === 3) {
+                    let newBrokoPlatform = new BreakablePlatform(posx, posy, this.engine)
+                    if (this.lastrow === true) {
+                        console.log('Set on ')
+                        newBrokoPlatform.setSRTT()
+                        this.lastrow = false
+                    }
+                    this.add(newBrokoPlatform)
                 }
             }
         }

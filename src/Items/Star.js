@@ -9,7 +9,7 @@ export class Star extends Item{
     }
 
     //Only executes when a player collides.
-    Action(player) {
+    Action = (player) => {
         player.setStar(true)
         let ShowSR = new ShowStar(player)
         player.scene.add(ShowSR)

@@ -13,6 +13,7 @@ import health from './assets/finishedAssets/health.png'
 import projectile from './assets/finishedAssets/projectile.png'
 import coin from './assets/finishedAssets/coin.png'
 import BGChunk from './assets/finishedAssets/background_chunk.png'
+import BreakablePlatformTexture from './assets/finishedAssets/Breakable_platform.png'
 import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
 
 const Resources = {
@@ -30,7 +31,8 @@ const Resources = {
     Projectile: new ImageSource(projectile),
     Coin: new ImageSource(coin),
     BGChunk: new ImageSource(BGChunk),
-    ElecPlatSprite: new ImageSource(ElecPlatSprite)
+    ElecPlatSprite: new ImageSource(ElecPlatSprite),
+    BreakablePlatformTexture: new ImageSource(BreakablePlatformTexture)
 }
 
 const SpriteResources = {

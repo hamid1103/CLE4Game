@@ -1,16 +1,15 @@
 import * as ex from 'excalibur'
-import {CollisionType, Vector} from 'excalibur';
-import {Player} from '../Entities/Player.js';
-import {Resources, SpriteResources} from "../resources.js";
-import {Coin} from "../Items/Coin.js";
+import {CollisionType, Vector} from "excalibur";
+import {Resources} from "../resources.js";
+import {Player} from "../Entities/Player.js";
 
-
-export class ElecPlatform extends ex.Actor {
-    PixelplatformSprite = ex.Sprite.from(Resources.ElecPlatSprite)
+export class BreakablePlatform extends ex.Actor {
+    PixelplatformSprite = ex.Sprite.from(Resources.BreakablePlatformTexture)
     PlayersOnIt = {};
     YZINDEX;
     SpawnRowTrigger = false;
     SRTT = false
+    Seen = false;
 
     constructor(x, y, Engine) {
         super({
@@ -22,8 +21,6 @@ export class ElecPlatform extends ex.Actor {
         this.startpos = ex.vec(x, y)
         this.engine = Engine
     }
-
-    Seen = false
 
     setSRTT() {
         this.SRTT = true
@@ -50,17 +47,8 @@ export class ElecPlatform extends ex.Actor {
                 this.PlayersOnIt[event.other.name] = event.other
             }
         });
-        this.on('postcollision', e =>{
-            if(e.other instanceof Player){
-                if(e.side === ex.Side.Top && this.PlayersOnIt[e.other.name].gotFirstCol !== true){
-                    e.other.RemoveHeart()
-                }
-                this.PlayersOnIt[e.other.name].gotFirstCol = true
-            }
-        })
         this.on('collisionend', (e) => {
             if (e.other instanceof Player) {
-                this.PlayersOnIt[e.other.name].gotFirstCol = false
                 delete this.PlayersOnIt[e.other.name]
                 if (Object.keys(this.PlayersOnIt).length === 0) {
                     this.body.collisionType = ex.CollisionType.Passive
@@ -75,7 +63,7 @@ export class ElecPlatform extends ex.Actor {
                 }, 25)
             }
         })
-        this.scale = new Vector(0.75, 0.5);
+        this.scale = new Vector(1.5, 1.8);
 
         this.collider.useBoxCollider(this.PixelplatformSprite.width, this.PixelplatformSprite.height);
     }
@@ -86,10 +74,9 @@ export class ElecPlatform extends ex.Actor {
             if (event.other.pos.y < this.pos.y) {
                 this.body.collisionType = ex.CollisionType.Fixed;
             }
+            this.ToDestroy = true
         }
 
     }
 
 }
-
-
