@@ -254,10 +254,28 @@ export class TestLevel extends ex.Scene {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
+                        }else if (Rand >= 25 && Rand < 31) {
+                            newItem = new BlockDestroyer(posx, posy, this.engine)
                         }
                         if (newItem !== undefined)
                             this.add(newItem)
                     }
+                } else if(curRow[k] === 2){
+                    let newElectPlatform = new ElecPlatform(posx, posy, this.engine)
+                    if (this.lastrow === true) {
+                        console.log('Set on ')
+                        newElectPlatform.setSRTT()
+                        this.lastrow = false
+                    }
+                    this.add(newElectPlatform)
+                } else if(curRow[k] === 3) {
+                    let newBrokoPlatform = new BreakablePlatform(posx, posy, this.engine)
+                    if (this.lastrow === true) {
+                        console.log('Set on ')
+                        newBrokoPlatform.setSRTT()
+                        this.lastrow = false
+                    }
+                    this.add(newBrokoPlatform)
                 }
             }
         }
