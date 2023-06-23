@@ -15,6 +15,8 @@ import coin from './assets/finishedAssets/coin.png'
 import BGChunk from './assets/finishedAssets/background_chunk.png'
 import BreakablePlatformTexture from './assets/finishedAssets/Breakable_platform.png'
 import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
+import startscreen from './assets/finishedAssets/Startscreen.png'
+import startbutton from './assets/finishedAssets/Start.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
@@ -32,7 +34,9 @@ const Resources = {
     Coin: new ImageSource(coin),
     BGChunk: new ImageSource(BGChunk),
     ElecPlatSprite: new ImageSource(ElecPlatSprite),
-    BreakablePlatformTexture: new ImageSource(BreakablePlatformTexture)
+    BreakablePlatformTexture: new ImageSource(BreakablePlatformTexture),
+    StartScreen: new ImageSource(startscreen),
+    Startbutton: new ImageSource(startbutton)
 }
 
 const SpriteResources = {
