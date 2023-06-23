@@ -27,6 +27,7 @@ export class BreakablePlatform extends ex.Actor {
     }
 
     viewIndex;
+
     onInitialize(engine) {
         this.on('enterviewport', () => {
             console.log('I BEEN SEEN and im ' + this.SRTT)
@@ -52,15 +53,15 @@ export class BreakablePlatform extends ex.Actor {
         });
         this.on('collisionend', (e) => {
             if (e.other instanceof Player) {
-                delete this.PlayersOnIt[e.other.name]
                 if (this.ToDestroy === true) {
-                 this.kill()
+                    delete this.scene.viewableBBs[this.viewIndex]
+                    this.kill()
                 }
             }
         })
-        this.on('postcollision', (e)=> {
-            if(e.other instanceof Player && this.PlayersOnIt[e.other.name].getFirstCol !== true){
-                if(e.side === ex.Side.Top){
+        this.on('postcollision', (e) => {
+            if (e.other instanceof Player) {
+                if (e.side === ex.Side.Top) {
                     this.PlayersOnIt[e.other.name].getFirstCol = true
                     this.ToDestroy = true
                 }
