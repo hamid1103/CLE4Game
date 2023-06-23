@@ -8,16 +8,14 @@ export class Nuclear extends Item{
     constructor(x, y) {
         super(x, y, Resources.Nuclear);
     }
-
-    //Only executes when a player collides.
-    Action = (player) => {
+    Action = (player)=> {
+        player.setInvisibility(true)
+        player.heldItem = undefined
         let nuke = new ShowNuclear(player)
         player.scene.add(nuke)
-
-        setTimeout(() => {
-            player.invisibility = true
+        setTimeout(()=>{
+            player.setInvisibility(false)
             nuke.kill()
-        }, 2000);
-        
+        }, 2000)
     }
 }

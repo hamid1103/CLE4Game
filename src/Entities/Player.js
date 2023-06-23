@@ -247,24 +247,6 @@ setShowSR(SR){
 
         this.pointsLabel.text = `points: ${this.points}`
 
-        // this.pointerY = _engine.input.pointers.primary.lastScreenPos.y;
-
-        // this.shootDirectionY = this.pointerY - this.pos.y;
-        // let y = 0;
-
-        // this.counter = this.counter + _delta;
-        // if (this.counter > 300) {
-        //     this.canShoot = true;
-        // }
-        // if (this.health < 10) {
-        //     if (this.isShooting && this.canShoot) {
-        //         _engine.currentScene.add(new projectile(this.pos.y, this.shootDirectionY, 1, 800));
-        //         this.counter = 0;
-        //         this.canShoot = false;
-        //     }
-        // }
-
-
         this.vel.x = 0
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
