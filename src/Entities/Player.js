@@ -90,6 +90,7 @@ export class Player extends ex.Actor {
                 document.addEventListener("joystick0neutral", () => this.setNeutral());
                 break;
             case PlayerName.Player2:
+                this.PlayerTexture = Sprite.from(Resources.TargetIcon2)
                 this.curPlayerKeys = {
                     Left:ex.Input.Keys.A,
                     Right:ex.Input.Keys.D,
