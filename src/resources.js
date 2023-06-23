@@ -17,6 +17,7 @@ import BreakablePlatformTexture from './assets/finishedAssets/Breakable_platform
 import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
 import startscreen from './assets/finishedAssets/Startscreen.png'
 import startbutton from './assets/finishedAssets/Start.png'
+import luckyblock from './assets/finishedAssets/luckyblock.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
@@ -36,7 +37,8 @@ const Resources = {
     ElecPlatSprite: new ImageSource(ElecPlatSprite),
     BreakablePlatformTexture: new ImageSource(BreakablePlatformTexture),
     StartScreen: new ImageSource(startscreen),
-    Startbutton: new ImageSource(startbutton)
+    Startbutton: new ImageSource(startbutton),
+    LuckyBlock: new ImageSource(luckyblock)
 }
 
 const SpriteResources = {
