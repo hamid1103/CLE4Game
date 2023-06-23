@@ -11,6 +11,7 @@ export var PlayerName = {
 
 export class Player extends ex.Actor {
     onGround;
+    ShowSR;
     startpos;
     StartHealth = 3;
     points = 0;
@@ -198,6 +199,7 @@ export class Player extends ex.Actor {
     }
 
     exitCollision(e) {
+        this.onGround = false
     }
 
     postCollision(e) {
@@ -218,15 +220,20 @@ export class Player extends ex.Actor {
         this.goRight = true
     }
 
+setShowSR(SR){
+    this.ShowSR = SR
+}
+
     setNeutral() {
         this.goLeft = false;
         this.goRight = false;
     }
 
     setUp() {
-        if (this.onGround)
-            this.goUp = true
+        if(!this.goUp)
+        this.goUp = true
     }
+    jumps = 0
 
     onPreUpdate(_engine, _delta) {
 
@@ -275,30 +282,28 @@ export class Player extends ex.Actor {
             return
         }
 
-
-        // if(this.Star){
-        //     if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
-        //         // Double Jump implementation
-        //         if (this.jumpCount = 2) {
-        //           this.jump();
-        //         }
-        //         if (this.goUp) {
-        //           this.goUp = false
-        //         }
-        //       }
-
-
-        // }
-
      
-
-        if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) && this.onGround) {
-            this.vel.y = -400;
-            this.onGround = false;
+        if ((_engine.input.keyboard.isHeld(this.curPlayerKeys.Up) || this.goUp) ) {
             if (this.goUp) {
                 this.goUp = false
             }
+            if(this.onGround){
+                this.vel.y = -400;
+                this.onGround = false;
+                
+            } else if(this.Star === true){
+                    if(!this.onGround)
+                        this.jumps++
+                    this.vel.y = -400;
+                }
         }
+
+        if(this.jumps === 1){
+            this.jumps = 0
+            this.Star = false
+            this.ShowSR.kill
+        }
+
         if (_engine.input.keyboard.wasPressed(ex.Input.Keys.C)) {
             this.useItem()
         }

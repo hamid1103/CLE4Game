@@ -1,6 +1,7 @@
 import * as ex from 'excalibur'
 import {Item} from "../Core/Item.js";
 import {Resources} from "../resources.js";
+import {Actor} from "excalibur";
 import {ShowStar} from "../Entities/ShowStar.js";
 
 export class Star extends Item{
@@ -11,11 +12,9 @@ export class Star extends Item{
     //Only executes when a player collides.
     Action = (player) => {
         player.setStar(true)
-        let ShowSR = new ShowStar(player)
-        player.scene.add(ShowSR)
-        setTimeout(()=>{
-            player.setStar(false)
-            ShowSR.kill()
-        })
+        player.heldItem = undefined
+        let newSR = new ShowStar(player)
+        player.setShowSR(newSR)
+        this.scene.add(newSR)
     }
 }
