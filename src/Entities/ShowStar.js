@@ -11,4 +11,7 @@ export class ShowStar extends Actor{
     onPreUpdate(_engine, _delta) {
         this.pos = this.player.pos
     }
+    killme = ()=>{
+        this.kill
+    }
 }
