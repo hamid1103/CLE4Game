@@ -1,5 +1,6 @@
 import { ImageSource, Sound, Resource, Loader, Sprite } from "excalibur";
 import TargetIcon from './assets/finishedAssets/Target.png'
+import TargetIcon2 from './assets/finishedAssets/Target2.png'
 import pixelplatform from './assets/finishedAssets/platform.png'
 import background from './assets/finishedAssets/background_start.png'
 import duif from './assets/finishedAssets/duif.png'
@@ -16,6 +17,7 @@ import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
+    TargetIcon2: new ImageSource(TargetIcon2),
     Pixelplatform: new ImageSource(pixelplatform),
     Background: new ImageSource(background),
     Enemy1: new ImageSource(kwal),
