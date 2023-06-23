@@ -1,6 +1,6 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
-import {Input, Shape, Sprite} from "excalibur";
+import {Shape, Sprite} from "excalibur";
 import {CameraFollow} from "./CameraFollow.js";
 import { healthbar } from '../Core/health.js';
 
@@ -18,6 +18,7 @@ export class Player extends ex.Actor {
     dead;
     playername;
     heldItem;
+    invisibility = false;
 
     camFollowObj;
 
@@ -28,6 +29,11 @@ export class Player extends ex.Actor {
     Star = false
 
     curPlayerKeys;
+
+    shootDirectionY;
+    canShoot;
+    isShooting;
+    counter;
 
     PlayerTexture
     pointsLabel;
@@ -108,8 +114,25 @@ export class Player extends ex.Actor {
         })
         this.addTag('Player')
         this.graphics.use('Sprite')
+
         this.addChild(this.hpb)
+
+        
+
+
+
+        // //shooting
+        // _engine.input.pointers.primary.on('down', (event) => {
+        //     this.isShooting = true;
+        // });
+
+        // _engine.input.pointers.primary.on('up', (event) => {
+        //     this.isShooting = false;
+        // }); 
+
+        
     }
+
 
     ItemHolderUI
     MakeItemHolderUI(){
@@ -131,10 +154,15 @@ export class Player extends ex.Actor {
         overlay.appendChild(this.ItemHolderUI)
     }
 
+
     RemoveHeart() {
-        if (this.invisibility = false){
+        if (this.invisibility == false)
+        {
+            console.log('hjdhrgjk')
             if (this.CurHealth > 0) {
+              
                 this.CurHealth--
+                this.hpb.onHealthUpdate(3 - this.CurHealth)
             } 
             else {
                 this.dead = true;
@@ -151,10 +179,6 @@ export class Player extends ex.Actor {
         this.points += points;
         this.pointsLabel.text = "Points: " + this.points;
     }
-
-    
-
-
 
     onFirstCollision(e) {
 
@@ -174,7 +198,6 @@ export class Player extends ex.Actor {
     setInvisibility(ToF = true){
         this.invisibility = ToF
     }
-
 
     exitCollision(e){
     }
@@ -204,6 +227,7 @@ export class Player extends ex.Actor {
     }
 
     onPreUpdate(_engine, _delta) {
+
         if(this.heldItem !== undefined){
             this.ItemHolderUI.IMGHold.style.display = 'block'
             this.ItemHolderUI.IMGHold.src = this.heldItem.spritepath
@@ -213,20 +237,30 @@ export class Player extends ex.Actor {
             this.ItemHolderUI.IMGHold.src = ''
             this.ItemHolderUI.IMGHold.style.display = 'hidden'
         }
+
+        // this.pointerY = _engine.input.pointers.primary.lastScreenPos.y;
+
+        // this.shootDirectionY = this.pointerY - this.pos.y;
+        // let y = 0;
+
+        // this.counter = this.counter + _delta;
+        // if (this.counter > 300) {
+        //     this.canShoot = true;
+        // }
+        // if (this.health < 10) {
+        //     if (this.isShooting && this.canShoot) {
+        //         _engine.currentScene.add(new projectile(this.pos.y, this.shootDirectionY, 1, 800));
+        //         this.counter = 0;
+        //         this.canShoot = false;
+        //     }
+        // }
+
+
         this.vel.x = 0
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Right) || this.goRight) {
             this.vel.x = 200
         }
 
-        if(this.scene.engine.input.keyboard.wasPressed(Input.Keys.C)){
-            if(this.FlyRocket){
-                this.setFlyRocket(false)
-            }
-            else
-            {
-                this.setFlyRocket(true)
-            }
-        }
         if (_engine.input.keyboard.isHeld(this.curPlayerKeys.Left) || this.goLeft) {
             this.vel.x = -200
         }
@@ -260,7 +294,6 @@ export class Player extends ex.Actor {
 
             }
         }
-
         this.pointsLabel.pos.y= this.pos.y
     }
 

@@ -27,5 +27,7 @@ export class healthbar extends Actor {
 
     onHealthUpdate(updatedHealth) {
         this.graphics.use(this.spritesheet.getSprite(0, updatedHealth));
+    
+        
     }
 }
