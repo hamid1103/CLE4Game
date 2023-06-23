@@ -50,10 +50,19 @@ export class BreakablePlatform extends ex.Actor {
         this.on('collisionend', (e) => {
             if (e.other instanceof Player) {
                 delete this.PlayersOnIt[e.other.name]
-                if (Object.keys(this.PlayersOnIt).length === 0) {
-                    this.body.collisionType = ex.CollisionType.Passive
+                if (this.ToDestroy === true) {
+                 this.kill()
                 }
             }
+        })
+        this.on('postcollision', (e)=> {
+            if(e.other instanceof Player && this.PlayersOnIt[e.other.name].getFirstCol !== true){
+                if(e.side === ex.Side.Top){
+                    this.PlayersOnIt[e.other.name].getFirstCol = true
+                    this.ToDestroy = true
+                }
+            }
+
         })
         this.on('precollision', (e) => {
             if (e.other instanceof Player && e.side === ex.Side.Bottom) {
@@ -74,7 +83,6 @@ export class BreakablePlatform extends ex.Actor {
             if (event.other.pos.y < this.pos.y) {
                 this.body.collisionType = ex.CollisionType.Fixed;
             }
-            this.ToDestroy = true
         }
 
     }
