@@ -12,6 +12,6 @@ export class ShowStar extends Actor{
         this.pos = this.player.pos
     }
     killme = ()=>{
-        this.kill
+        this.kill()
     }
 }

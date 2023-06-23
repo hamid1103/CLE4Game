@@ -301,7 +301,7 @@ setShowSR(SR){
         if(this.jumps === 1){
             this.jumps = 0
             this.Star = false
-            this.ShowSR.kill
+            this.ShowSR.kill()
         }
 
         if (_engine.input.keyboard.wasPressed(ex.Input.Keys.C)) {

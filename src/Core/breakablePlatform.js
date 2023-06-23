@@ -26,6 +26,7 @@ export class BreakablePlatform extends ex.Actor {
         this.SRTT = true
     }
 
+    viewIndex;
     onInitialize(engine) {
         this.on('enterviewport', () => {
             console.log('I BEEN SEEN and im ' + this.SRTT)
@@ -34,10 +35,12 @@ export class BreakablePlatform extends ex.Actor {
                 this.scene.SpawnMorePlatforms();
                 console.log('SPAWNING PLATFORMS')
             }
+            this.viewIndex = this.scene.viewableBBs.push(this)
         })
         this.on('exitviewport', () => {
             if (this.Seen)
                 this.kill()
+            delete this.scene.viewableBBs[this.viewIndex]
         })
 
         this.graphics.use(this.PixelplatformSprite)

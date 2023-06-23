@@ -13,6 +13,7 @@ import {chunk} from "../Core/chunk.js";
 import {ElecPlatform} from "../Core/ElecPlatform.js";
 import { healthbar } from '../Core/health.js';
 import {BreakablePlatform} from "../Core/breakablePlatform.js";
+import {BlockDestroyer} from "../Items/BlockDestroyer.js";
 
 
 export class TestLevel extends ex.Scene {
@@ -21,10 +22,18 @@ export class TestLevel extends ex.Scene {
     PCam2;
     curCam;
 
+    viewableBBs = []
+
     onInitialize(_engine) {
         this.StartLevel()
+        setInterval(()=>{
+            console.log(this.viewableBBs)
+        }, 1000)
     }
 
+    onPostUpdate(_engine, _delta) {
+
+    }
 
     StartLevel() {
         let background = new Background()
@@ -175,6 +184,8 @@ export class TestLevel extends ex.Scene {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
+                        }else if (Rand >= 25 && Rand < 31) {
+                            newItem = new BlockDestroyer(posx, posy, this.engine)
                         }
                         if (newItem !== undefined)
                             this.add(newItem)
