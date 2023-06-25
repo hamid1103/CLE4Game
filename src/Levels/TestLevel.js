@@ -74,32 +74,32 @@ export class TestLevel extends ex.Scene {
         this.prefabs =
             [
                 [1, 0, 1, 1, 0, 1, 0, 0, 1, 0],
-                [0, 1, 0, 0, 1, 0, 1, 1, 0, 1],
+                [0, 1, 0, 0, 1, 3, 1, 1, 0, 1],
                 [1, 0, 0, 1, 1, 0, 0, 1, 1, 0],
                 [0, 0, 1, 0, 1, 1, 0, 1, 0, 1],
                 [1, 1, 0, 1, 1, 0, 1, 1, 0, 0],
                 [1, 0, 0, 0, 1, 1, 0, 1, 0, 1],
                 [0, 1, 0, 0, 0, 0, 1, 1, 0, 1],
-                [0, 0, 1, 0, 1, 0, 1, 1, 0, 1],
+                [0, 0, 1, 0, 1, 0, 1, 3, 0, 1],
                 [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
                 [0, 0, 1, 1, 0, 0, 0, 1, 1, 0],
                 [0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
                 [0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
-                [0, 0, 1, 0, 1, 0, 1, 1, 0, 0],
+                [0, 0, 1, 0, 1, 3, 1, 1, 0, 0],
                 [0, 1, 0, 0, 0, 0, 1, 1, 0, 0],
                 [1, 1, 0, 0, 1, 0, 0, 0, 1, 0],
                 [1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
                 [0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
                 [0, 0, 1, 0, 0, 0, 1, 1, 0, 0],
                 [1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-                [1, 1, 0, 0, 0, 0, 1, 1, 1, 1],
+                [1, 1, 0, 3, 0, 0, 1, 1, 1, 1],
                 [0, 0, 0, 1, 0, 1, 1, 1, 0, 0],
                 [0, 1, 0, 0, 1, 0, 1, 0, 1, 0],
                 [0, 0, 1, 0, 1, 0, 0, 1, 0, 1],
                 [1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
                 [0, 0, 0, 1, 0, 0, 1, 0, 0, 1],
                 [0, 1, 0, 1, 1, 1, 0, 0, 0, 0],
-                [0, 0, 1, 0, 1, 1, 0, 0, 0, 0],
+                [0, 0, 3, 0, 1, 1, 0, 0, 0, 0],
                 [1, 0, 3, 0, 0, 0, 0, 1, 1, 0],
                 [0, 1, 1, 0, 1, 1, 0, 0, 1, 0],
                 [1, 1, 0, 0, 0, 1, 1, 0, 1, 0],
@@ -189,7 +189,7 @@ export class TestLevel extends ex.Scene {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
-                        }else if (Rand >= 25 && Rand < 31) {
+                        }else if (Rand >= 25 && Rand < 28) {
                             newItem = new BlockDestroyer(posx, posy, this.engine)
                         }
                         if (newItem !== undefined)
@@ -278,7 +278,7 @@ export class TestLevel extends ex.Scene {
                             newItem = new Star(posx, posy, this.engine)
                         } else if (Rand >= 23 && Rand < 25) {
                             newItem = new Nuclear(posx, posy, this.engine)
-                        }else if (Rand >= 25 && Rand < 31) {
+                        }else if (Rand >= 25 && Rand < 28) {
                             newItem = new BlockDestroyer(posx, posy, this.engine)
                         }
                         if (newItem !== undefined)
