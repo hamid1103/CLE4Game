@@ -307,6 +307,9 @@ export class TestLevel extends ex.Scene {
     }
 
     onPreUpdate(_engine, _delta) {
+        _engine.CurrentGameState.P1Score = this.player.points
+        _engine.CurrentGameState.P2Score = this.player2.points
+
         if (!this.CamSet) {
             this.camera.clearAllStrategies()
             this.camera.strategy.elasticToActor(this.curCam, 0.9, 0.9)

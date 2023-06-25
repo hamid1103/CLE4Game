@@ -13,13 +13,5 @@ import {Star} from "../Items/Star.js";
 
 
 export class Endscreen extends ex.Scene{
-
-    onPreUpdate(_engine, _delta) {
-        if (localStorage.getItem('points')){
-            if (Math.ceil(this.points) > localStorage.getItem('points')) {
-            localStorage.setItem('points', Math.ceil(this.points));
-            }
     
-        }
-    }
 }

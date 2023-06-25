@@ -15,7 +15,10 @@ import {Star} from "./Items/Star.js";
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
-    state
+    CurrentGameState = {
+        P1Score: 0,
+        P2Score: 0,
+    }
     #arcade;
     #joystickListener;
 
