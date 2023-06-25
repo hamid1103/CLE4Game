@@ -21,7 +21,7 @@ export class TestLevel extends ex.Scene {
     PCam1;
     PCam2;
     curCam;
-
+    canSpawnNewEnemy = true;
     viewableBBs = []
 
     onInitialize(_engine) {
@@ -30,10 +30,15 @@ export class TestLevel extends ex.Scene {
             console.log(this.viewableBBs)
         }, 1000)
     }
+    setCanSpawnEnemy(ToF){
+        this.canSpawnNewEnemy = ToF
+    }
 
     onPostUpdate(_engine, _delta) {
 
     }
+
+    MonsterSpawnerLoop;
 
     StartLevel() {
         let background = new Background()
@@ -210,7 +215,26 @@ export class TestLevel extends ex.Scene {
             }
         }
         this.CTAI = this.platforms.length
+        this.MonsterSpawnerLoop = setInterval(()=> {
+            if(this.canSpawnNewEnemy){
+                this.canSpawnNewEnemy = false
+                let newEnemyYVec = this.curCam.pos.y - 300
+                let newEnemy = new Enemy(this.curCam.pos.x, newEnemyYVec, this.engine)
+                newEnemy.on('exitviewport', e=>{
+                    this.setCanSpawnEnemy(true)
+                })
+                this.add(newEnemy)
+                setTimeout(()=>{
+                    let secondNewEnemy = new Enemy(this.curCam.pos.x, newEnemyYVec - 250, this.engine)
+                    secondNewEnemy.vel = ex.vec(-150, 0)
+                    this.add(secondNewEnemy)
+                }, 740)
+            }
+        }, 3500)
+    }
 
+    onDeactivate(_context) {
+        clearInterval(this.MonsterSpawnerLoop)
     }
 
     SpawnMorePlatforms() {
