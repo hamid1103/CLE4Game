@@ -303,7 +303,22 @@ export class TestLevel extends ex.Scene {
                 }
             }
         }
-
+        this.MonsterSpawnerLoop = setInterval(()=> {
+            if(this.canSpawnNewEnemy){
+                this.canSpawnNewEnemy = false
+                let newEnemyYVec = this.curCam.pos.y - 300
+                let newEnemy = new Enemy(this.curCam.pos.x, newEnemyYVec, this.engine)
+                newEnemy.on('exitviewport', e=>{
+                    this.setCanSpawnEnemy(true)
+                })
+                this.add(newEnemy)
+                setTimeout(()=>{
+                    let secondNewEnemy = new Enemy(this.curCam.pos.x, newEnemyYVec - 250, this.engine)
+                    secondNewEnemy.vel = ex.vec(-150, 0)
+                    this.add(secondNewEnemy)
+                }, 740)
+            }
+        }, 3500)
     }
 
     onPreUpdate(_engine, _delta) {
