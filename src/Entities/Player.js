@@ -1,8 +1,9 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
-import {Shape, Sprite} from "excalibur";
+import {Sprite} from "excalibur";
 import {CameraFollow} from "./CameraFollow.js";
 import {healthbar} from '../Core/health.js';
+import {Endscreen} from "../Levels/Endscreen.js";
 
 export var PlayerName = {
     Player1: 'Player1',
@@ -72,6 +73,24 @@ export class Player extends ex.Actor {
         });
     }
 
+    remEvs(){
+        switch (this.playername) {
+            case PlayerName.Player1:
+                document.removeEventListener("joystick0button4", () => this.useItem());
+                document.removeEventListener("joystick0button5", () => this.setUp());
+                document.removeEventListener("joystick0left", () => this.setLeft());
+                document.removeEventListener("joystick0right", () => this.setRight());
+                document.removeEventListener("joystick0neutral", () => this.setNeutral());
+                break;
+            case PlayerName.Player2:
+                document.removeEventListener("joystick1button4", () => this.useItem());
+                document.removeEventListener("joystick1button5", () => this.setUp());
+                document.removeEventListener("joystick1left", () => this.setLeft());
+                document.removeEventListener("joystick1right", () => this.setRight());
+                document.removeEventListener("joystick1neutral", () => this.setNeutral());
+                break;
+        }
+    }
 
     onInitialize(_engine) {
         this.MakeItemHolderUI()
@@ -134,7 +153,6 @@ export class Player extends ex.Actor {
 
     }
 
-
     ItemHolderUI
 
     MakeItemHolderUI() {
@@ -166,6 +184,9 @@ export class Player extends ex.Actor {
                 this.hpb.onHealthUpdate(3 - this.CurHealth)
             } else {
                 this.dead = true;
+                let endsc = new Endscreen();
+                this.scene.engine.addScene('ED', endsc)
+                this.scene.engine.goToScene('ED')
             }
         }
 

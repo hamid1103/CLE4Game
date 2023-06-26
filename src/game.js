@@ -12,6 +12,7 @@ import {Nuclear} from "./Items/Nuclear.js";
 import {Rocket} from "./Items/Rocket.js";
 import {Coin} from "./Items/Coin.js";
 import {Star} from "./Items/Star.js";
+import {Endscreen} from "./Levels/Endscreen.js";
 
 const loader = ResourceLoader
 export class Game extends ex.Engine {
@@ -63,6 +64,7 @@ export class Game extends ex.Engine {
         this.#arcade = new Arcade(this, true, true)
         document.addEventListener("joystickcreated",  (e) => this.#joyStickFound(e))
         const testLevel = new TestLevel()
+
         this.addScene('TL', testLevel)
         this.goToScene('TL')
 

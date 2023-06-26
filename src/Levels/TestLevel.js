@@ -26,9 +26,6 @@ export class TestLevel extends ex.Scene {
 
     onInitialize(_engine) {
         this.StartLevel()
-        setInterval(()=>{
-            console.log(this.viewableBBs)
-        }, 1000)
     }
     setCanSpawnEnemy(ToF){
         this.canSpawnNewEnemy = ToF
@@ -234,6 +231,8 @@ export class TestLevel extends ex.Scene {
 
     onDeactivate(_context) {
         clearInterval(this.MonsterSpawnerLoop)
+        this.player.remEvs();
+        this.player2.remEvs();
     }
 
     SpawnMorePlatforms() {
