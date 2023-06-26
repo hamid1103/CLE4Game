@@ -4,6 +4,7 @@ import {variants, labels} from '@catppuccin/palette'
 
 
 export class Endscreen extends ex.Scene {
+    xhttp = new XMLHttpRequest();
     p1Score;
     p2Score;
 
@@ -16,6 +17,7 @@ export class Endscreen extends ex.Scene {
     PInput1;
     PInput2;
     ToDBUpdate = false;
+
     onInitialize(_engine) {
         this.p1Score = _engine.CurrentGameState.P1Score
         this.p2Score = _engine.CurrentGameState.P2Score
@@ -29,10 +31,11 @@ export class Endscreen extends ex.Scene {
 
     UpdatingLabel = document.createElement('label')
     LoaderDiv = document.createElement('div')
+
     onPreUpdate(_engine, _delta) {
-        if((this.PInput2.confirmed && this.PInput1.confirmed) && !this.ToDBUpdate){
-            setTimeout(()=>{
-                this.ToDBUpdate = true
+        if ((this.PInput2.confirmed && this.PInput1.confirmed) && !this.ToDBUpdate) {
+            this.ToDBUpdate = true
+            setTimeout(() => {
                 this.Overlay.innerHTML = ''
                 this.Overlay.className = 'EndSyncDB'
                 this.LoaderDiv.className = 'loading'
@@ -40,7 +43,24 @@ export class Endscreen extends ex.Scene {
                 this.UpdatingLabel.innerText = 'Syncing scores to Database'
                 this.Overlay.appendChild(this.UpdatingLabel)
                 this.Overlay.appendChild(this.LoaderDiv)
+
+                this.xhttp.open("POST", "https://stud.hosted.hr.nl/1062604/", true);
+
+                var data = new FormData()
+                data.append('action', 'SaveScore')
+                data.append('name', this.PInput1.finalName)
+                data.append('score', this.p1Score)
+                this.xhttp.send(data)
             }, 1000)
+
+            this.xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Response
+                    var response = this.responseText;
+                    console.log(response)
+                }
+            };
+
         }
     }
 
@@ -77,6 +97,7 @@ export class PlayerNameInput extends ex.Actor {
     NameDiv = document.createElement('div')
     PlayerLabel = document.createElement('label')
     ScoreLabel = document.createElement('label')
+
     onInitialize(_engine) {
         this.PlayerLabel.innerText = this.PIndex
         this.PlayerLabel.className = 'PlayerLabel'
@@ -125,6 +146,7 @@ export class PlayerNameInput extends ex.Actor {
 
     WaitText = document.createElement('label')
     spinner = document.createElement('div')
+
     Confirm() {
         let finalString = '';
         for (let char in this.currentnameString) {
@@ -184,8 +206,12 @@ export class PlayerNameInput extends ex.Actor {
             this.currentnameString[char].char = this.alphabet[this.currentnameString[char].chardex]
             this.currentnameString[char].label.innerText = this.currentnameString[char].char
             this.currentnameString[char].label.style.color = labels.text.mocha.hex
+            this.currentnameString[char].label.style.backgroundColor = ""
         }
-        this.currentnameString[this.curChar].label.style.color = labels.red.mocha.hex
+        if (this.currentnameString[this.curChar].char === ' ') {
+            this.currentnameString[this.curChar].label.style.backgroundColor = labels.red.mocha.hex
+        } else
+            this.currentnameString[this.curChar].label.style.color = labels.red.mocha.hex
 
     }
 
