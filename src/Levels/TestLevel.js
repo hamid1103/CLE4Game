@@ -230,6 +230,7 @@ export class TestLevel extends ex.Scene {
     }
 
     onDeactivate(_context) {
+        document.getElementById('overlay').innerHTML = ''
         clearInterval(this.MonsterSpawnerLoop)
         this.player.remEvs();
         this.player2.remEvs();
