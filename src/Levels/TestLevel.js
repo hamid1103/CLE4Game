@@ -57,9 +57,6 @@ export class TestLevel extends ex.Scene {
         this.player2 = new Player(744, 790, PlayerName.Player2, this.engine)
         this.add(this.player2)
         this.PCam2 = this.player2.camFollowObj
-
-        let testEnemy = new Enemy(700, 700, this.engine)
-        this.add(testEnemy)
         
         // let TestCoin2 = new Coin(750, 850, this.engine)
         // this.add(TestCoin2)

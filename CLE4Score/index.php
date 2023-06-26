@@ -7,24 +7,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             case 'GetAllScores':
                 $data = GetScoresAll();
                 break;
-            case 'GetTop3':
-                $data = GetScoresTop3();
+            case 'GetTop':
+                $data = GetTopScore();
                 break;
             case 'CheckForPlayer':
                 $data = CheckForPlayer($_GET['name']);
+                break;
+            case 'GetPlayerScores':
+                $data = GetPlayerScores($_GET['name']);
                 break;
             default:
                 $data = "Action Invalid";
                 break;
         }
     }else{
-        $data = "Error: No Action Defined in post.";
+        $data = "Error: No Action Defined in Get.";
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'SaveScore':
-                $data = SaveScore($_POST['name'], $_POST['score']);
+                if(isset($_POST['name'], $_POST['score'])){
+                    $data = SaveScore($_POST['name'], $_POST['score']);
+                } else{
+                    $data = "Missing one or more neccessary post data";
+                }
                 break;
             default:
                 $data = "Action Invalid";
