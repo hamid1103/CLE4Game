@@ -223,11 +223,13 @@ export class TestLevel extends ex.Scene {
                 newEnemy.on('exitviewport', e=>{
                     this.setCanSpawnEnemy(true)
                 })
+                newEnemy.onPostKill = () => {this.setCanSpawnEnemy(true)}
                 this.add(newEnemy)
                 setTimeout(()=>{
                     let secondNewEnemy = new Enemy(this.curCam.pos.x, newEnemyYVec - 250, this.engine)
                     secondNewEnemy.vel = ex.vec(-150, 0)
                     this.add(secondNewEnemy)
+                    secondNewEnemy.onPostKill = () => {this.setCanSpawnEnemy(true)}
                 }, 740)
             }
         }, 3500)
