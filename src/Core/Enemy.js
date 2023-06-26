@@ -52,9 +52,9 @@ export class Enemy extends ex.Actor {
         if (this.pos.x < 0 || this.pos.x + this.w > engine.drawWidth) {
             this.vel.x = -this.vel.x;
         }
-        if (this.pos.y < 0 || this.pos.y + this.h > engine.drawHeight) {
-            this.vel.y = -this.vel.y;
-        }
+        // if (this.pos.y < 0 || this.pos.y + this.h > engine.drawHeight) {
+        //     this.vel.y = -this.vel.y;
+        // }
     }
 
 
