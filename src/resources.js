@@ -76,10 +76,11 @@ ResourceLoader.startButtonFactory = () => {
     btn.style.textAlign = "center";
     btn.style.textDecoration = "none";
     btn.style.display = "inline-block";
-    btn.style.fontSize = "20px";
+    btn.style.fontSize = "50px";
     btn.style.margin = "10px";
-    btn.style.borderRadius = "10px";
-    btn.style.boxShadow = "0px 5px 10px rgba(0, 0, 0, 0.2)";
+    btn.style.borderRadius = "40% 10%";
+    btn.style.boxShadow = "2px 2px 5px black";
+    btn.style.cursor = "pointer"
     
     btn.addEventListener("click", () => {
         console.log("Button geklikt!");
