@@ -39,9 +39,10 @@ export class BreakablePlatform extends ex.Actor {
             this.viewIndex = this.scene.viewableBBs.push(this)
         })
         this.on('exitviewport', () => {
-            if (this.Seen)
+            if (this.Seen){
+                delete this.scene.viewableBBs[this.viewIndex]
                 this.kill()
-            delete this.scene.viewableBBs[this.viewIndex]
+            }
         })
 
         this.graphics.use(this.PixelplatformSprite)

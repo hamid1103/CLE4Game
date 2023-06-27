@@ -1,99 +1,145 @@
 @import "@catppuccin/palette/style";
-body{
-  margin: 0;
-  display: flex;
+
+body {
+    margin: 0;
+    display: flex;
 }
-#overlay{
-  position: fixed;
-  width: 1440px;
-  left: 0;
-  margin: 0;
-  top: 0;
+
+#overlay {
+    position: fixed;
+    width: 1440px;
+    left: 0;
+    margin: 0;
+    top: 0;
 }
-#overlay.EndScreen{
-  display: flex;
-  height: 900px;
-  width: 1440px;
-  justify-content: space-around;
-  align-items: center;
+
+#overlay.EndScreen {
+    display: flex;
+    height: 900px;
+    width: 1440px;
+    justify-content: space-around;
+    align-items: center;
 }
-#overlay.EndSyncDB{
-  display: flex;
-  flex-direction: column;
-  height: 900px;
-  width: 1440px;
-  justify-content: center;
-  align-items: center;
+
+#overlay.EndSyncDB {
+    display: flex;
+    flex-direction: column;
+    height: 900px;
+    width: 1440px;
+    justify-content: center;
+    align-items: center;
 }
-#overlay .PlayerDataDiv{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+#overlay .PlayerDataDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-#overlay #UpdateDBLabel{
-  color: var(--ctp-mocha-text);
-  margin-bottom: 1em;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 2.5em;
+
+#overlay #UpdateDBLabel {
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.5em;
 }
+
 #overlay .PlayerDataDiv .PlayerLabel {
-  color: var(--ctp-mocha-text);
-  margin-bottom: 1em;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 2em;
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2em;
 }
+
 #overlay .PlayerDataDiv .PlayerScore {
-  color: var(--ctp-mocha-text);
-  margin-bottom: 1em;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1.5em;
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.5em;
 }
-#overlay .PlayerDataDiv .PlayerNameInput{
-  color: var(--ctp-mocha-text);
-  margin-bottom: 1em;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1em;
+
+#overlay .PlayerDataDiv .PlayerNameInput {
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1em;
 }
-#overlay .PlayerDataDiv .WaitText{
-  color: var(--ctp-mocha-text);
-  margin-bottom: 1em;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1em;
+
+#overlay .PlayerDataDiv .WaitText {
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1em;
 }
+
 .ItemHolder {
-  position: absolute;
-  top: 20px;
-  background-color: var(--ctp-mocha-base);
-  border: var(--ctp-mocha-crust) solid 2px;
-  width: 5em;
-  height: 5em;
+    position: absolute;
+    top: 20px;
+    background-color: var(--ctp-mocha-base);
+    border: var(--ctp-mocha-crust) solid 2px;
+    width: 5em;
+    height: 5em;
 }
-.ItemHolder#p1{
-  left: 10px;
+
+.ItemHolder#p1 {
+    left: 10px;
 }
-.ItemHolder#p2{
-  right: 10px;
+
+.ItemHolder#p2 {
+    right: 10px;
 }
+
 .ItemHolder img {
-  width: 90%;
-  object-fit: fill;
+    width: 90%;
+    object-fit: fill;
 }
 
 .loading {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  border-top-color: var(--ctp-mocha-blue);
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: var(--ctp-mocha-blue);
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
+
 @-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+#overlay ul {
+    list-style-type: none;
+    width: 50em;
+    height: 15em;
+}
+
+#overlay ul .ScoreLI {
+    width: 100%;
+}
+
+#overlay ul .ScoreLI.greyLi {
+    background-color: var(--ctp-mocha-mantle);
+    color: var(--ctp-mocha-text);
+}
+
+#overlay ul .ScoreLI.whiteLi {
+    background-color: var(--ctp-mocha-text);
+    color: var(--ctp-frappe-base);
+}
+
+#overlay ul .ScoreLI div {
+    width: 99%;
+    height: 99%;
+    display: flex;
+    justify-content: space-around;
 }

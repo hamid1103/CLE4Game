@@ -7,6 +7,7 @@ export class Endscreen extends ex.Scene {
     xhttp = new XMLHttpRequest();
     p1Score;
     p2Score;
+    ScoresSaved = 0;
 
     Overlay = document.getElementById('overlay')
 
@@ -32,6 +33,8 @@ export class Endscreen extends ex.Scene {
     UpdatingLabel = document.createElement('label')
     LoaderDiv = document.createElement('div')
 
+    SavingScoresDone = false;
+    ShowingEndScreen= false;
     onPreUpdate(_engine, _delta) {
         if ((this.PInput2.confirmed && this.PInput1.confirmed) && !this.ToDBUpdate) {
             this.ToDBUpdate = true
@@ -46,21 +49,56 @@ export class Endscreen extends ex.Scene {
 
                 this.xhttp.open("POST", "https://stud.hosted.hr.nl/1062604/", true);
 
-                var data = new FormData()
+                let data = new FormData()
                 data.append('action', 'SaveScore')
                 data.append('name', this.PInput1.finalName)
                 data.append('score', this.p1Score)
                 this.xhttp.send(data)
+                setTimeout(()=> {
+                    this.xhttp.open("POST", "https://stud.hosted.hr.nl/1062604/", true);
+                    let data = new FormData()
+                    data.append('action', 'SaveScore')
+                    data.append('name', this.PInput2.finalName)
+                    data.append('score', this.p2Score)
+                    this.xhttp.send(data)
+                    this.SavingScoresDone = true
+                }, 1000)
             }, 1000)
+        }
 
-            this.xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Response
-                    var response = this.responseText;
-                    console.log(response)
+        if(this.SavingScoresDone && !this.ShowingEndScreen){
+            this.ShowingEndScreen = true;
+            this.Overlay.innerHTML = ''
+            this.xhttp.open("GET", "https://stud.hosted.hr.nl/1062604/?action=GetAllScores", true);
+            this.xhttp.send()
+            this.xhttp.onload = () =>{
+                console.log(JSON.parse(this.xhttp.responseText))
+                this.ResultData = JSON.parse(this.xhttp.responseText)
+                this.ScoresTable = document.createElement('ul');
+                this.Overlay.appendChild(this.ScoresTable)
+                for(let row in this.ResultData){
+                    let NEWLI = document.createElement('li')
+                    NEWLI.classList.add('ScoreLI')
+                    let RowData = this.ResultData[row]
+                    if(row % 2 === 0) {
+                        NEWLI.classList.add('greyLi')
+                    }
+                    else {
+                        NEWLI.classList.add('whiteLi')
+                    }
+                    let newscoreDiv = document.createElement('div')
+                    newscoreDiv.className = 'lidiv'
+                    let newscoreScore = document.createElement('label')
+                    newscoreScore.innerText = RowData.score
+                    let newscoreName = document.createElement('label')
+                    newscoreName.innerText = RowData.name
+                    this.ScoresTable.appendChild(NEWLI)
+                    NEWLI.appendChild(newscoreDiv);
+                    newscoreDiv.appendChild(newscoreScore)
+                    newscoreDiv.appendChild(newscoreName)
+
                 }
-            };
-
+            }
         }
     }
 
