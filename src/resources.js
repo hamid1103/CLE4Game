@@ -61,29 +61,4 @@ export { Resources, ResourceLoader, Loaded, SpriteResources };
 ResourceLoader.logo = titleImage
 ResourceLoader.logoWidth = 800; 
 ResourceLoader.logoHeight = 300;
-
-
-ResourceLoader.startButtonFactory = () => {
-    let btn = document.createElement('button');
-    btn.classList.add("my-own-cool-button");
-    btn.style.width = "700px";
-    btn.style.height = "100px";
-    btn.textContent = "Druk op Enter";
-    btn.style.backgroundColor = "blue";
-    btn.style.border = "none";
-    btn.style.color = "white";
-    btn.style.padding = "10px 20px";
-    btn.style.textAlign = "center";
-    btn.style.textDecoration = "none";
-    btn.style.display = "inline-block";
-    btn.style.fontSize = "50px";
-    btn.style.margin = "10px";
-    btn.style.borderRadius = "40% 10%";
-    btn.style.boxShadow = "2px 2px 5px black";
-    btn.style.cursor = "pointer"
-    
-    btn.addEventListener("click", () => {
-        console.log("Button geklikt!");
-    });
-    return btn
-}
+ResourceLoader.suppressPlayButton = true
