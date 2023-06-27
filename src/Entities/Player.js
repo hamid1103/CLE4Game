@@ -1,6 +1,9 @@
 import * as ex from 'excalibur'
 import {Resources} from "../resources.js";
-import {Sprite} from "excalibur";
+
+
+import {ExitViewPortEvent, Shape, Sprite, Vector} from "excalibur";
+
 import {CameraFollow} from "./CameraFollow.js";
 import {healthbar} from '../Core/health.js';
 import {Endscreen} from "../Levels/Endscreen.js";
@@ -11,6 +14,7 @@ export var PlayerName = {
 }
 
 export class Player extends ex.Actor {
+    engine;
     onGround;
     ShowSR;
     startpos;
@@ -31,6 +35,8 @@ export class Player extends ex.Actor {
     Star = false
     amount = 0;
 
+    
+
     curPlayerKeys;
 
     shootDirectionY;
@@ -42,6 +48,8 @@ export class Player extends ex.Actor {
     pointsLabel;
 
     hpb;
+
+
 
     /**
      *
@@ -92,7 +100,8 @@ export class Player extends ex.Actor {
         }
     }
 
-    onInitialize(_engine) {
+    onInitialize(engine) {
+        this.engine = engine
         this.MakeItemHolderUI()
         this.scene.add(this.camFollowObj)
         this.scene.add(this.pointsLabel);
@@ -141,15 +150,39 @@ export class Player extends ex.Actor {
         this.addChild(this.hpb)
 
 
-        // //shooting
-        // _engine.input.pointers.primary.on('down', (event) => {
-        //     this.isShooting = true;
-        // });
+  
+        this.on("exitviewport", (event) => {
 
-        // _engine.input.pointers.primary.on('up', (event) => {
-        //     this.isShooting = false;
-        // }); 
+            //teleport on other player instead random location on the viewport
 
+            if (this.playername === PlayerName.Player1) {
+                this.pos = this.scene.player2.pos;
+            }else{
+                this.pos = this.scene.player.pos
+            }
+
+            // the player get minus 1 hearth
+            this.RemoveHeart();
+
+
+        })
+
+
+
+
+  
+
+        
+
+
+
+
+
+
+
+
+
+     
 
     }
 
