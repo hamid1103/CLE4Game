@@ -15,10 +15,10 @@ import coin from './assets/finishedAssets/coin.png'
 import BGChunk from './assets/finishedAssets/background_chunk.png'
 import BreakablePlatformTexture from './assets/finishedAssets/Breakable_platform.png'
 import ElecPlatSprite from './assets/finishedAssets/ElectricPlatform.png'
-import startscreen from './assets/finishedAssets/Startscreen.png'
 import startbutton from './assets/finishedAssets/Start.png'
 import BreakPlatformItem from './assets/finishedAssets/BreakPlatformItem.png'
 import luckyblock from './assets/finishedAssets/luckyblock.png'
+import titleImage from './assets/finishedAssets/Startscreen.png'
 
 const Resources = {
     TargetIcon: new ImageSource(TargetIcon),
@@ -37,7 +37,6 @@ const Resources = {
     BGChunk: new ImageSource(BGChunk),
     ElecPlatSprite: new ImageSource(ElecPlatSprite),
     BreakablePlatformTexture: new ImageSource(BreakablePlatformTexture),
-    StartScreen: new ImageSource(startscreen),
     Startbutton: new ImageSource(startbutton),
     BreakPlatformItem: new ImageSource(BreakPlatformItem),
     LuckyBlock: new ImageSource(luckyblock)
@@ -56,3 +55,32 @@ let Loaded = true
 const ResourceLoader = new Loader(loadables);
 
 export { Resources, ResourceLoader, Loaded, SpriteResources };
+
+ResourceLoader.logo = titleImage
+ResourceLoader.logoWidth = 800; 
+ResourceLoader.logoHeight = 300;
+
+
+ResourceLoader.startButtonFactory = () => {
+    let btn = document.createElement('button');
+    btn.classList.add("my-own-cool-button");
+    btn.style.width = "700px";
+    btn.style.height = "100px";
+    btn.textContent = "Druk op Enter";
+    btn.style.backgroundColor = "blue";
+    btn.style.border = "none";
+    btn.style.color = "white";
+    btn.style.padding = "10px 20px";
+    btn.style.textAlign = "center";
+    btn.style.textDecoration = "none";
+    btn.style.display = "inline-block";
+    btn.style.fontSize = "20px";
+    btn.style.margin = "10px";
+    btn.style.borderRadius = "10px";
+    btn.style.boxShadow = "0px 5px 10px rgba(0, 0, 0, 0.2)";
+    
+    btn.addEventListener("click", () => {
+        console.log("Button geklikt!");
+    });
+    return btn
+}
