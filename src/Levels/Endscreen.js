@@ -74,6 +74,16 @@ export class Endscreen extends ex.Scene {
             this.xhttp.onload = () =>{
                 console.log(JSON.parse(this.xhttp.responseText))
                 this.ResultData = JSON.parse(this.xhttp.responseText)
+                let goBack = document.createElement('label')
+                goBack.innerText = 'Press 2 to go back'
+                goBack.id = 'bgend'
+                document.addEventListener("joystick0button1", () => {
+                    window.location.href = "https://hamid1103.github.io/CLE4Game/";
+                });
+                document.addEventListener("joystick0button1", () => {
+                    window.location.href = "https://hamid1103.github.io/CLE4Game/";
+                });
+                this.Overlay.appendChild(goBack)
                 this.ScoresTable = document.createElement('ul');
                 this.Overlay.appendChild(this.ScoresTable)
                 for(let row in this.ResultData){

@@ -122,6 +122,12 @@ body {
     width: 50em;
     height: 15em;
 }
+#overlay #bgend {
+    color: var(--ctp-mocha-text);
+    margin-bottom: 1em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2em;
+}
 
 #overlay ul .ScoreLI {
     width: 100%;
