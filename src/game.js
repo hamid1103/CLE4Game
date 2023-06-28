@@ -75,11 +75,11 @@ export class Game extends ex.Engine {
         let joystick = this.#arcade.Joysticks[e.detail]
 
         // debug, this shows you the names of the buttons when they are pressed
-        for (const buttonEvent of joystick.ButtonEvents) {
+       /* for (const buttonEvent of joystick.ButtonEvents) {
             document.addEventListener(buttonEvent, () => console.log(buttonEvent))
         }
 
-        this.update();
+        this.update();*/
     }
 
     onPreUpdate(_engine, _delta) {
